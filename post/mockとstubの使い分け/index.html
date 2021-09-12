@@ -7,7 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>かわそんの掃き溜め - かわそんの掃き溜め</title>
+  <title>【sinon.js】mockとstubの使い分け.md - かわそんの掃き溜め</title>
+  <meta name="description" content="こんにちは、かわそんです。
+sinon.jsを使っていて、mockと stub の区別がつかなかったので、個人的基準を共有します。">
   <meta name="author" content="Kohey"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -28,14 +30,66 @@
   
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/kohey.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/kohey.github.io\/post\/mock%E3%81%A8stub%E3%81%AE%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91\/",
+          "name": "【sinon.Js】mockとstubの使い分け.Md"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Kohey"
+  },
+  "headline": "【sinon.js】mockとstubの使い分け.md",
+  "description" : "こんにちは、かわそんです。\nsinon.jsを使っていて、mockと stub の区別がつかなかったので、個人的基準を共有します。\n",
+  "inLanguage" : "ja",
+  "wordCount":  122 ,
+  "datePublished" : "2021-09-12T23:24:42",
+  "dateModified" : "2021-09-12T23:24:42",
+  "image" : "https:\/\/kohey.github.io\/images\/kohey.PNG",
+  "keywords" : [ "node" ],
+  "mainEntityOfPage" : "https:\/\/kohey.github.io\/post\/mock%E3%81%A8stub%E3%81%AE%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/kohey.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/kohey.github.io\/images\/kohey.PNG",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
 
-<meta property="og:title" content="かわそんの掃き溜め" />
+<meta property="og:title" content="【sinon.js】mockとstubの使い分け.md" />
+<meta property="og:description" content="こんにちは、かわそんです。
+sinon.jsを使っていて、mockと stub の区別がつかなかったので、個人的基準を共有します。">
 <meta property="og:image" content="https://kohey.github.io/images/kohey.PNG" />
-<meta property="og:url" content="https://kohey.github.io/" />
+<meta property="og:url" content="https://kohey.github.io/post/mock%E3%81%A8stub%E3%81%AE%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="かわそんの掃き溜め" />
 
-  <meta name="twitter:title" content="かわそんの掃き溜め" />
+  <meta name="twitter:title" content="【sinon.js】mockとstubの使い分け.md" />
+  <meta name="twitter:description" content="こんにちは、かわそんです。
+sinon.jsを使っていて、mockと stub の区別がつかなかったので、個人的基準を共有します。">
   <meta name="twitter:image" content="https://kohey.github.io/images/kohey.PNG" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@KKohey4" />
@@ -175,46 +229,14 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="page-heading">
+            <div class="post-heading">
               
-                <h1>かわそんの掃き溜め</h1>
-              
-              
-                <hr class="small">
+                <h1>【sinon.js】mockとstubの使い分け.md</h1>
               
               
-                
-                  <span class="page-subheading">日々の知見とエラー格闘の忘備録</span>
-                
               
               
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-
-    
-  <div role="main" class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        
-
-        <div class="posts-list">
-          
-          
-            <article class="post-preview">
-    <a href="https://kohey.github.io/post/mock%E3%81%A8stub%E3%81%AE%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91/">
-        <h2 class="post-title">【sinon.js】mockとstubの使い分け.md</h2>
-        
-        
-        
-    </a>
-
-    <p class="post-meta">
-        <span class="post-meta">
+                <span class="post-meta">
   
   
   <i class="fas fa-calendar"></i>&nbsp;September 12, 2021に投稿
@@ -234,180 +256,162 @@
 </span>
 
 
-    </p>
-    <div class="post-entry">
-        
-        <p>こんにちは、<a href="https://twitter.com/KKohey4">かわそん</a>です。</p>
-<p>sinon.jsを使っていて、mockと stub の区別がつかなかったので、個人的基準を共有します。</p>
-        <a href="https://kohey.github.io/post/mock%E3%81%A8stub%E3%81%AE%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91/" class="post-read-more">[続きを読む]</a>
-        
-    </div>
-
-    
-    <div class="blog-tags">
-        
-        <a href="https://kohey.github.io/tags/node/">node</a>&nbsp;
-        
-    </div>
-    
-
-</article>
-          
-            <article class="post-preview">
-    <a href="https://kohey.github.io/post/ddd%E3%81%A8rdb%E3%81%AE%E8%B7%9D%E9%9B%A2/">
-        <h2 class="post-title">RDSの歴史・immutability・validationについて</h2>
-        
-        
-        
-    </a>
-
-    <p class="post-meta">
-        <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;September 12, 2021に投稿
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;分間
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;81&nbsp;言葉
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Kohey
-    
-  
-  
-</span>
-
-
-    </p>
-    <div class="post-entry">
-        
-        <p>こんにちは、<a href="https://twitter.com/KKohey4">かわそん</a>です。</p>
-<p>texta.fm#1・2から学んだことをまとめます。
-RDBが勢力伸ばした理由、immutability、validationについて。</p>
-        <a href="https://kohey.github.io/post/ddd%E3%81%A8rdb%E3%81%AE%E8%B7%9D%E9%9B%A2/" class="post-read-more">[続きを読む]</a>
-        
-    </div>
-
-    
-    <div class="blog-tags">
-        
-        <a href="https://kohey.github.io/tags/texta.fm/">texta.fm</a>&nbsp;
-        
-        <a href="https://kohey.github.io/tags/%E6%8E%83%E3%81%8D%E6%BA%9C%E3%82%81/">掃き溜め</a>&nbsp;
-        
-    </div>
-    
-
-</article>
-          
-            <article class="post-preview">
-    <a href="https://kohey.github.io/post/2021-09-12-m1%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7nuxt%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%81%85%E3%81%84/">
-        <h2 class="post-title">2021 09 12 M1マシンでNuxtのビルドが遅い</h2>
-        
-        
-        
-    </a>
-
-    <p class="post-meta">
-        <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;September 12, 2021に投稿
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;分間
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;45&nbsp;言葉
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Kohey
-    
-  
-  
-</span>
-
-
-    </p>
-    <div class="post-entry">
-        
-        <p>こんにちは、<a href="https://twitter.com/KKohey4">かわそん</a>です。</p>
-<p>Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。</p>
-        <a href="https://kohey.github.io/post/2021-09-12-m1%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7nuxt%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%81%85%E3%81%84/" class="post-read-more">[続きを読む]</a>
-        
-    </div>
-
-    
-    <div class="blog-tags">
-        
-        <a href="https://kohey.github.io/tags/nuxt/">Nuxt</a>&nbsp;
-        
-    </div>
-    
-
-</article>
-          
-            <article class="post-preview">
-    <a href="https://kohey.github.io/post/2021-09-11-create-blog-1/">
-        <h2 class="post-title">最初の記事</h2>
-        
-        
-        
-    </a>
-
-    <p class="post-meta">
-        <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;September 11, 2021に投稿
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;分間
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;0&nbsp;言葉
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Kohey
-    
-  
-  
-</span>
-
-
-    </p>
-    <div class="post-entry">
-        
-        
-        
-    </div>
-
-    
-
-</article>
-          
+              
+            </div>
+          </div>
         </div>
-
-        
       </div>
     </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>こんにちは、<a href="https://twitter.com/KKohey4">かわそん</a>です。</p>
+<p>sinon.jsを使っていて、mockと stub の区別がつかなかったので、個人的基準を共有します。</p>
+<h2 id="結論">結論</h2>
+<ul>
+<li>基本、mockを使えばいい</li>
+<li>条件分岐の中に、意図的に入りたい場合は、stubを使えばいい</li>
+</ul>
+<h2 id="mockstubとは">mock・stubとは？</h2>
+<p>公式ドキュメントより引用します。</p>
+<p><code>mock</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Mocks (and mock expectations) are fake methods (like spies) with pre-programmed behavior (like stubs) as well as pre-programmed expectations.
+
+A mock will fail your test if it is not used as expected.
+</code></pre></div><p>訳すと、</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">モックは、事前にプログラムされた動作と、事前にプログラムされた期待値を持つ偽のメソッドです。
+
+モックは、期待通りに使用されないとテストに失敗します。
+</code></pre></div><p>ほむ、、、<br>
+stubは？</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Test stubs are functions (spies) with pre-programmed behavior.
+
+They support the full test spy API in addition to methods which can be used to alter the stub’s behavior.
+
+As spies, stubs can be either anonymous, or wrap existing functions. When wrapping an existing function with a stub, the original function is not called.
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">テストスタブは、あらかじめ動作がプログラムされた関数（スパイ）です。
+
+スタブは、テストスパイの完全な API をサポートしているほか、 スタブの挙動を変更するためのメソッドも用意されています。
+
+スタブには、無名関数と既存の関数をラップしたものがあります。既存の関数をスタブでラップした場合、元の関数は呼び出されません。
+</code></pre></div><p>うーん、わかるようなわからんような。</p>
+<p>この時点で、ざっくり</p>
+<p><code>mock</code>
+動作を期待するもの。期待する動作するか、確認すべき対象</p>
+<p><code>sinon</code>
+あらかじめ動作を決めちゃうもの</p>
+<p>という理解をしました。</p>
+<p>そして、実務コードを読むと、大まかにそんな感じであってそう。</p>
+<h2 id="結論の理由">結論の理由</h2>
+<p>mockで期待する動作を検証できるのであれば、基本mockでいいのではと思います。</p>
+<p>しかし、テスト対象の中で他のメソッドを呼んでいて、それらの挙動は、それらのテスト層で担保されているとします。</p>
+<p>であれば、これらをmockとして挙動の注入を行う必要はないですよね。</p>
+<p>そこで、</p>
+<ul>
+<li>テストするまでもない関数</li>
+<li>意図的に条件分岐の中に入りたい</li>
+</ul>
+<p>場合に、「動作を規定できる」stubを使っちゃおうという、最初の結論になるわけです。</p>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://kohey.github.io/tags/node/">node</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2fkohey.github.io%2fpost%2fmock%25E3%2581%25A8stub%25E3%2581%25AE%25E4%25BD%25BF%25E3%2581%2584%25E5%2588%2586%25E3%2581%2591%2f&amp;text=%e3%80%90sinon.js%e3%80%91mock%e3%81%a8stub%e3%81%ae%e4%bd%bf%e3%81%84%e5%88%86%e3%81%91.md&amp;via=KKohey4" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkohey.github.io%2fpost%2fmock%25E3%2581%25A8stub%25E3%2581%25AE%25E4%25BD%25BF%25E3%2581%2584%25E5%2588%2586%25E3%2581%2591%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=https%3a%2f%2fkohey.github.io%2fpost%2fmock%25E3%2581%25A8stub%25E3%2581%25AE%25E4%25BD%25BF%25E3%2581%2584%25E5%2588%2586%25E3%2581%2591%2f&amp;title=%e3%80%90sinon.js%e3%80%91mock%e3%81%a8stub%e3%81%ae%e4%bd%bf%e3%81%84%e5%88%86%e3%81%91.md" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkohey.github.io%2fpost%2fmock%25E3%2581%25A8stub%25E3%2581%25AE%25E4%25BD%25BF%25E3%2581%2584%25E5%2588%2586%25E3%2581%2591%2f&amp;title=%e3%80%90sinon.js%e3%80%91mock%e3%81%a8stub%e3%81%ae%e4%bd%bf%e3%81%84%e5%88%86%e3%81%91.md" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkohey.github.io%2fpost%2fmock%25E3%2581%25A8stub%25E3%2581%25AE%25E4%25BD%25BF%25E3%2581%2584%25E5%2588%2586%25E3%2581%2591%2f&amp;title=%e3%80%90sinon.js%e3%80%91mock%e3%81%a8stub%e3%81%ae%e4%bd%bf%e3%81%84%e5%88%86%e3%81%91.md" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkohey.github.io%2fpost%2fmock%25E3%2581%25A8stub%25E3%2581%25AE%25E4%25BD%25BF%25E3%2581%2584%25E5%2588%2586%25E3%2581%2591%2f&amp;description=%e3%80%90sinon.js%e3%80%91mock%e3%81%a8stub%e3%81%ae%e4%bd%bf%e3%81%84%e5%88%86%e3%81%91.md" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
   </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+
+          
+        
+      </article>
 
       
-    <div class="page-meta">
-  
-  
-  
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kohey.github.io/post/ddd%E3%81%A8rdb%E3%81%AE%E8%B7%9D%E9%9B%A2/" data-toggle="tooltip" data-placement="top" title="RDSの歴史・immutability・validationについて">&larr; 前ページ</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
 </div>
 
-
-  
+      
 <footer>
   <div class="container">
     <div class="row">
@@ -432,7 +436,7 @@ RDBが勢力伸ばした理由、immutability、validationについて。</p>
               </li>
           
           <li>
-            <a href="/index.xml" title="RSS">
+            <a href="" title="RSS">
               <span class="fa-stack fa-lg">
                 <i class="fas fa-circle fa-stack-2x"></i>
                 <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
