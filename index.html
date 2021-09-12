@@ -38,6 +38,8 @@
   <meta name="twitter:title" content="かわそんの掃き溜め" />
   <meta name="twitter:image" content="https://kohey.github.io/images/kohey.PNG" />
   <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@KKohey4" />
+  <meta name="twitter:creator" content="@KKohey4" />
   <link href='https://kohey.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
   <meta name="generator" content="Hugo 0.88.1" />
   <link rel="alternate" href="https://kohey.github.io/index.xml" type="application/rss+xml" title="かわそんの掃き溜め"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
@@ -204,6 +206,75 @@
           
           
             <article class="post-preview">
+    <a href="https://kohey.github.io/post/2021-09-12-m1%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7nuxt%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%81%85%E3%81%84/">
+        <h2 class="post-title">2021 09 12 M1マシンでNuxtのビルドが遅い</h2>
+        
+        
+        
+    </a>
+
+    <p class="post-meta">
+        <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;September 12, 2021に投稿
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;分間
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;45&nbsp;言葉
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Kohey
+    
+  
+  
+</span>
+
+
+    </p>
+    <div class="post-entry">
+        
+        <p>こんにちは、<a href="https://twitter.com/KKohey4">かわそん</a>です。</p>
+<p>Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。</p>
+<h2 id="状況">状況</h2>
+<ul>
+<li>シンプルなNuxtプロジェクトをcloneしてきた(例: <a href="https://github.com/kohey/nuxt-on-m1">https://github.com/kohey/nuxt-on-m1</a>)</li>
+<li><code>yarn install</code> したが通常より明らかに時間がかかっている</li>
+<li><code>yarn dev</code> に2時間くらいかかる</li>
+<li>M1 chip Machine / Big Sur 11.5.2</li>
+<li>nodeはnodenvで管理</li>
+</ul>
+<h2 id="原因">原因</h2>
+<p>M1に最適化されたnodeのバージョンを利用していなかった。</p>
+<p>Intelマシンではnode12x系のバージョンを使っていたが、M1では明示的に16系を利用する必要がある。</p>
+<h2 id="対処法">対処法</h2>
+<p>以下、nodenvで管理しているとして説明します。<br>
+他のマネージャを利用している場合は、適宜読み替えてください。</p>
+<ol>
+<li><code>nodenv install 16.0.0</code></li>
+<li><code>vim .node-version</code> =&gt; 16.0.0 を指定</li>
+<li><code>node-sass</code> を使っているなら削除し、<code>sass</code> と <code>node-loader@7.1.0</code> をinstallする</li>
+<li><code>yarn install</code> &amp;&amp; <code>yarn dev</code></li>
+</ol>
+<p>以上です。</p>
+
+        
+    </div>
+
+    
+    <div class="blog-tags">
+        
+        <a href="https://kohey.github.io/tags/nuxt/">Nuxt</a>&nbsp;
+        
+    </div>
+    
+
+</article>
+          
+            <article class="post-preview">
     <a href="https://kohey.github.io/post/2021-09-11-create-blog-1/">
         <h2 class="post-title">最初の記事</h2>
         
@@ -270,6 +341,14 @@
                   <span class="fa-stack fa-lg">
                     <i class="fas fa-circle fa-stack-2x"></i>
                     <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/KKohey4" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>

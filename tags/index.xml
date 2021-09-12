@@ -4,6 +4,16 @@
     <title>Tags on かわそんの掃き溜め</title>
     <link>https://kohey.github.io/tags/</link>
     <description>Recent content in Tags on かわそんの掃き溜め</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://kohey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 12 Sep 2021 17:08:35 +0900</lastBuildDate><atom:link href="https://kohey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nuxt</title>
+      <link>https://kohey.github.io/tags/nuxt/</link>
+      <pubDate>Sun, 12 Sep 2021 17:08:35 +0900</pubDate>
+      
+      <guid>https://kohey.github.io/tags/nuxt/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

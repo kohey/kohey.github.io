@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>かわそんの掃き溜め</title>
-    <link>https://kohey.github.io/</link>
-    <description>Recent content on かわそんの掃き溜め</description>
+    <title>Nuxt on かわそんの掃き溜め</title>
+    <link>https://kohey.github.io/tags/nuxt/</link>
+    <description>Recent content in Nuxt on かわそんの掃き溜め</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 12 Sep 2021 17:08:35 +0900</lastBuildDate><atom:link href="https://kohey.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Sep 2021 17:08:35 +0900</lastBuildDate><atom:link href="https://kohey.github.io/tags/nuxt/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>2021 09 12 M1マシンでNuxtのビルドが遅い</title>
       <link>https://kohey.github.io/post/2021-09-12-m1%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7nuxt%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%81%85%E3%81%84/</link>
@@ -19,26 +19,6 @@ Intelマシンではnode12x系のバージョンを使っていたが、M1では
 対処法 以下、nodenvで管理しているとして説明します。
 他のマネージャを利用している場合は、適宜読み替えてください。
  nodenv install 16.0.0 vim .node-version =&amp;gt; 16.0.0 を指定 node-sass を使っているなら削除し、sass と node-loader@7.1.0 をinstallする yarn install &amp;amp;&amp;amp; yarn dev  以上です。</description>
-    </item>
-    
-    <item>
-      <title>最初の記事</title>
-      <link>https://kohey.github.io/post/2021-09-11-create-blog-1/</link>
-      <pubDate>Sat, 11 Sep 2021 18:43:16 +0900</pubDate>
-      
-      <guid>https://kohey.github.io/post/2021-09-11-create-blog-1/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>自己紹介</title>
-      <link>https://kohey.github.io/page/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://kohey.github.io/page/about/</guid>
-      <description>渋谷で働くWeb系エンジニアです。
-開発で得られた知見や、エラーとの格闘日々を記録します
-skill 仕事で使ったことがあるもの  Ruby(Rails) Golang(chi・echo) Node(mongoose・mongo) Vue(Nuxt) Kubernetes  趣味レベル  Python swift GCP・AWS  </description>
     </item>
     
   </channel>

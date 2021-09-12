@@ -5,7 +5,22 @@
     <link>https://kohey.github.io/post/</link>
     <description>Recent content in Posts on かわそんの掃き溜め</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 11 Sep 2021 18:43:16 +0900</lastBuildDate><atom:link href="https://kohey.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Sep 2021 17:08:35 +0900</lastBuildDate><atom:link href="https://kohey.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021 09 12 M1マシンでNuxtのビルドが遅い</title>
+      <link>https://kohey.github.io/post/2021-09-12-m1%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7nuxt%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%81%85%E3%81%84/</link>
+      <pubDate>Sun, 12 Sep 2021 17:08:35 +0900</pubDate>
+      
+      <guid>https://kohey.github.io/post/2021-09-12-m1%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7nuxt%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%81%85%E3%81%84/</guid>
+      <description>こんにちは、かわそんです。
+Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。
+状況  シンプルなNuxtプロジェクトをcloneしてきた(例: https://github.com/kohey/nuxt-on-m1) yarn install したが通常より明らかに時間がかかっている yarn dev に2時間くらいかかる M1 chip Machine / Big Sur 11.5.2 nodeはnodenvで管理  原因 M1に最適化されたnodeのバージョンを利用していなかった。
+Intelマシンではnode12x系のバージョンを使っていたが、M1では明示的に16系を利用する必要がある。
+対処法 以下、nodenvで管理しているとして説明します。
+他のマネージャを利用している場合は、適宜読み替えてください。
+ nodenv install 16.0.0 vim .node-version =&amp;gt; 16.0.0 を指定 node-sass を使っているなら削除し、sass と node-loader@7.1.0 をinstallする yarn install &amp;amp;&amp;amp; yarn dev  以上です。</description>
+    </item>
+    
     <item>
       <title>最初の記事</title>
       <link>https://kohey.github.io/post/2021-09-11-create-blog-1/</link>
