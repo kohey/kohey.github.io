@@ -9,29 +9,7 @@
 
   <title>RDSの歴史・immutability・validationについて - かわそんの掃き溜め</title>
   <meta name="description" content="texta.fm#1・2からの学び
-RDBが勢力伸ばした理由、immutability、validationについて。
-RDBについて ORマッパー誕生の背景 ActiveRecordは、ORマッパーを構成するアーキテクチャパターン
-ORマッパーはObjectモデルとRDSモデルの1:1のインピーダンスミスマッチを解消したかったから。
-なんでRDSが勢力伸ばした？ インスタンスをDBにストアできれば一番ええやん？ =&gt; OODB
-これが一番マッピングもいらんからいいやん
-RDBMS: 資金が潤沢に投入された &amp; 背後の理論が純粋で強固だった =&gt; RDBがOODBを上回った
-Railsはデータモデリングが全て的なことがある。DB設計をバチっと決めたら全部上手くいくじゃん。
- immutabilityについて value obj が immutabilityを満たさないと、値の共有を安全にできなくなる。
-value obj は値によって等価であるとみなすので、インスタンスが違っても同じになりうる。
-メリット 普遍なので複数prop =&gt; 組み合わせで状態を決定する =&gt; 穴があるとおかしくなる =&gt; このような状態が起こらないことを保証できる
-目の前のことを信頼できる、ということ。 状態が確定している。
-デメリット objは短命である場合、メモリの消費が増えること。
-が、小さいobjをガンガン作って、ガンガン消していく、のは、obj志向プログラミングで一番想定されているので、問題なし。 Railsでreq -&gt; res までに大量のsymbolを作成している。　1個のプロセスを効率よく使えれば、あとはスケールアウトさせるだけでは？
-これはnodeのモデル
-ムーアが頭打ちになってきている -&gt; コアを並べてマルチにしよう -&gt; いや、クラウド出てきた -&gt; shared nothing のインスタンスを横に並べて、elastic にスケールさせた方がいいし、冗長性的にもいい。
- validationについて アサーションエラーと例外の使い分け
-元々は画面に近い存在
-契約による設計 ・アサーション(表明)
-事前条件の契約 = 守らなかったら知らないぜ？
-事前条件を満たしていないもの、あり得ないでしょ、という状態を弾く
-・例外
-あり得るものを弾く
-防御的プログラミング 堅牢性を重んじるときにおきがち。">
+RDBが勢力伸ばした理由、immutability、validationについて。">
   <meta name="author" content="Kohey"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -80,7 +58,7 @@ value obj は値によって等価であるとみなすので、インスタン�
     "name" : "Kohey"
   },
   "headline": "RDSの歴史・immutability・validationについて",
-  "description" : "texta.fm#1・2からの学び\nRDBが勢力伸ばした理由、immutability、validationについて。\nRDBについて ORマッパー誕生の背景 ActiveRecordは、ORマッパーを構成するアーキテクチャパターン\nORマッパーはObjectモデルとRDSモデルの1:1のインピーダンスミスマッチを解消したかったから。\nなんでRDSが勢力伸ばした？ インスタンスをDBにストアできれば一番ええやん？ =\u0026gt; OODB\nこれが一番マッピングもいらんからいいやん\nRDBMS: 資金が潤沢に投入された \u0026amp; 背後の理論が純粋で強固だった =\u0026gt; RDBがOODBを上回った\nRailsはデータモデリングが全て的なことがある。DB設計をバチっと決めたら全部上手くいくじゃん。\n immutabilityについて value obj が immutabilityを満たさないと、値の共有を安全にできなくなる。\nvalue obj は値によって等価であるとみなすので、インスタンスが違っても同じになりうる。\nメリット 普遍なので複数prop =\u0026gt; 組み合わせで状態を決定する =\u0026gt; 穴があるとおかしくなる =\u0026gt; このような状態が起こらないことを保証できる\n目の前のことを信頼できる、ということ。 状態が確定している。\nデメリット objは短命である場合、メモリの消費が増えること。\nが、小さいobjをガンガン作って、ガンガン消していく、のは、obj志向プログラミングで一番想定されているので、問題なし。 Railsでreq -\u0026gt; res までに大量のsymbolを作成している。　1個のプロセスを効率よく使えれば、あとはスケールアウトさせるだけでは？\nこれはnodeのモデル\nムーアが頭打ちになってきている -\u0026gt; コアを並べてマルチにしよう -\u0026gt; いや、クラウド出てきた -\u0026gt; shared nothing のインスタンスを横に並べて、elastic にスケールさせた方がいいし、冗長性的にもいい。\n validationについて アサーションエラーと例外の使い分け\n元々は画面に近い存在\n契約による設計 ・アサーション(表明)\n事前条件の契約 = 守らなかったら知らないぜ？\n事前条件を満たしていないもの、あり得ないでしょ、という状態を弾く\n・例外\nあり得るものを弾く\n防御的プログラミング 堅牢性を重んじるときにおきがち。",
+  "description" : "texta.fm#1・2からの学び\nRDBが勢力伸ばした理由、immutability、validationについて。\n",
   "inLanguage" : "ja",
   "wordCount":  80 ,
   "datePublished" : "2021-09-12T17:52:28",
@@ -103,29 +81,7 @@ value obj は値によって等価であるとみなすので、インスタン�
 
 <meta property="og:title" content="RDSの歴史・immutability・validationについて" />
 <meta property="og:description" content="texta.fm#1・2からの学び
-RDBが勢力伸ばした理由、immutability、validationについて。
-RDBについて ORマッパー誕生の背景 ActiveRecordは、ORマッパーを構成するアーキテクチャパターン
-ORマッパーはObjectモデルとRDSモデルの1:1のインピーダンスミスマッチを解消したかったから。
-なんでRDSが勢力伸ばした？ インスタンスをDBにストアできれば一番ええやん？ =&gt; OODB
-これが一番マッピングもいらんからいいやん
-RDBMS: 資金が潤沢に投入された &amp; 背後の理論が純粋で強固だった =&gt; RDBがOODBを上回った
-Railsはデータモデリングが全て的なことがある。DB設計をバチっと決めたら全部上手くいくじゃん。
- immutabilityについて value obj が immutabilityを満たさないと、値の共有を安全にできなくなる。
-value obj は値によって等価であるとみなすので、インスタンスが違っても同じになりうる。
-メリット 普遍なので複数prop =&gt; 組み合わせで状態を決定する =&gt; 穴があるとおかしくなる =&gt; このような状態が起こらないことを保証できる
-目の前のことを信頼できる、ということ。 状態が確定している。
-デメリット objは短命である場合、メモリの消費が増えること。
-が、小さいobjをガンガン作って、ガンガン消していく、のは、obj志向プログラミングで一番想定されているので、問題なし。 Railsでreq -&gt; res までに大量のsymbolを作成している。　1個のプロセスを効率よく使えれば、あとはスケールアウトさせるだけでは？
-これはnodeのモデル
-ムーアが頭打ちになってきている -&gt; コアを並べてマルチにしよう -&gt; いや、クラウド出てきた -&gt; shared nothing のインスタンスを横に並べて、elastic にスケールさせた方がいいし、冗長性的にもいい。
- validationについて アサーションエラーと例外の使い分け
-元々は画面に近い存在
-契約による設計 ・アサーション(表明)
-事前条件の契約 = 守らなかったら知らないぜ？
-事前条件を満たしていないもの、あり得ないでしょ、という状態を弾く
-・例外
-あり得るものを弾く
-防御的プログラミング 堅牢性を重んじるときにおきがち。">
+RDBが勢力伸ばした理由、immutability、validationについて。">
 <meta property="og:image" content="https://kohey.github.io/images/kohey.PNG" />
 <meta property="og:url" content="https://kohey.github.io/post/ddd%E3%81%A8rdb%E3%81%AE%E8%B7%9D%E9%9B%A2/" />
 <meta property="og:type" content="website" />
@@ -133,10 +89,7 @@ value obj は値によって等価であるとみなすので、インスタン�
 
   <meta name="twitter:title" content="RDSの歴史・immutability・validationについて" />
   <meta name="twitter:description" content="texta.fm#1・2からの学び
-RDBが勢力伸ばした理由、immutability、validationについて。
-RDBについて ORマッパー誕生の背景 ActiveRecordは、ORマッパーを構成するアーキテクチャパターン
-ORマッパーはObjectモデルとRDSモデルの1:1のインピーダンスミスマッチを解消したかったから。
-なんでRDSが勢力伸ばした？ インスタンスをDBにストアできれ …">
+RDBが勢力伸ばした理由、immutability、validationについて。">
   <meta name="twitter:image" content="https://kohey.github.io/images/kohey.PNG" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@KKohey4" />
@@ -363,7 +316,6 @@ Railsでreq -&gt; res までに大量のsymbolを作成している。　　</p>
 <p>画面の入力項目って、DBのカラムって、ほとんど一緒っていうか、一緒にできるくない？<br>
 じゃあ一緒にしちゃえば、登場人物減らせるじゃん！<br>
 フォームオブジェクトを不要にできるじゃん。</p>
-
 
         
           <div class="blog-tags">
