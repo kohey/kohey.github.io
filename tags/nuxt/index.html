@@ -233,28 +233,7 @@
         
         <p>こんにちは、<a href="https://twitter.com/KKohey4">かわそん</a>です。</p>
 <p>Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。</p>
-<h2 id="状況">状況</h2>
-<ul>
-<li>シンプルなNuxtプロジェクトをcloneしてきた(例: <a href="https://github.com/kohey/nuxt-on-m1">https://github.com/kohey/nuxt-on-m1</a>)</li>
-<li><code>yarn install</code> したが通常より明らかに時間がかかっている</li>
-<li><code>yarn dev</code> に2時間くらいかかる</li>
-<li>M1 chip Machine / Big Sur 11.5.2</li>
-<li>nodeはnodenvで管理</li>
-</ul>
-<h2 id="原因">原因</h2>
-<p>M1に最適化されたnodeのバージョンを利用していなかった。</p>
-<p>Intelマシンではnode12x系のバージョンを使っていたが、M1では明示的に16系を利用する必要がある。</p>
-<h2 id="対処法">対処法</h2>
-<p>以下、nodenvで管理しているとして説明します。<br>
-他のマネージャを利用している場合は、適宜読み替えてください。</p>
-<ol>
-<li><code>nodenv install 16.0.0</code></li>
-<li><code>vim .node-version</code> =&gt; 16.0.0 を指定</li>
-<li><code>node-sass</code> を使っているなら削除し、<code>sass</code> と <code>node-loader@7.1.0</code> をinstallする</li>
-<li><code>yarn install</code> &amp;&amp; <code>yarn dev</code></li>
-</ol>
-<p>以上です。</p>
-
+        <a href="https://kohey.github.io/post/2021-09-12-m1%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7nuxt%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%81%85%E3%81%84/" class="post-read-more">[続きを読む]</a>
         
     </div>
 

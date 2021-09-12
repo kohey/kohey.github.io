@@ -9,12 +9,7 @@
 
   <title>2021 09 12 M1マシンでNuxtのビルドが遅い - かわそんの掃き溜め</title>
   <meta name="description" content="こんにちは、かわそんです。
-Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。
-状況  シンプルなNuxtプロジェクトをcloneしてきた(例: https://github.com/kohey/nuxt-on-m1) yarn install したが通常より明らかに時間がかかっている yarn dev に2時間くらいかかる M1 chip Machine / Big Sur 11.5.2 nodeはnodenvで管理  原因 M1に最適化されたnodeのバージョンを利用していなかった。
-Intelマシンではnode12x系のバージョンを使っていたが、M1では明示的に16系を利用する必要がある。
-対処法 以下、nodenvで管理しているとして説明します。
-他のマネージャを利用している場合は、適宜読み替えてください。
- nodenv install 16.0.0 vim .node-version =&gt; 16.0.0 を指定 node-sass を使っているなら削除し、sass と node-loader@7.1.0 をinstallする yarn install &amp;&amp; yarn dev  以上です。">
+Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。">
   <meta name="author" content="Kohey"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -63,7 +58,7 @@ Intelマシンではnode12x系のバージョンを使っていたが、M1では
     "name" : "Kohey"
   },
   "headline": "2021 09 12 M1マシンでNuxtのビルドが遅い",
-  "description" : "こんにちは、かわそんです。\nIntel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。\n状況  シンプルなNuxtプロジェクトをcloneしてきた(例: https:\/\/github.com\/kohey\/nuxt-on-m1) yarn install したが通常より明らかに時間がかかっている yarn dev に2時間くらいかかる M1 chip Machine \/ Big Sur 11.5.2 nodeはnodenvで管理  原因 M1に最適化されたnodeのバージョンを利用していなかった。\nIntelマシンではnode12x系のバージョンを使っていたが、M1では明示的に16系を利用する必要がある。\n対処法 以下、nodenvで管理しているとして説明します。\n他のマネージャを利用している場合は、適宜読み替えてください。\n nodenv install 16.0.0 vim .node-version =\u0026gt; 16.0.0 を指定 node-sass を使っているなら削除し、sass と node-loader@7.1.0 をinstallする yarn install \u0026amp;\u0026amp; yarn dev  以上です。",
+  "description" : "こんにちは、かわそんです。\nIntel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。\n",
   "inLanguage" : "ja",
   "wordCount":  45 ,
   "datePublished" : "2021-09-12T17:08:35",
@@ -86,12 +81,7 @@ Intelマシンではnode12x系のバージョンを使っていたが、M1では
 
 <meta property="og:title" content="2021 09 12 M1マシンでNuxtのビルドが遅い" />
 <meta property="og:description" content="こんにちは、かわそんです。
-Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。
-状況  シンプルなNuxtプロジェクトをcloneしてきた(例: https://github.com/kohey/nuxt-on-m1) yarn install したが通常より明らかに時間がかかっている yarn dev に2時間くらいかかる M1 chip Machine / Big Sur 11.5.2 nodeはnodenvで管理  原因 M1に最適化されたnodeのバージョンを利用していなかった。
-Intelマシンではnode12x系のバージョンを使っていたが、M1では明示的に16系を利用する必要がある。
-対処法 以下、nodenvで管理しているとして説明します。
-他のマネージャを利用している場合は、適宜読み替えてください。
- nodenv install 16.0.0 vim .node-version =&gt; 16.0.0 を指定 node-sass を使っているなら削除し、sass と node-loader@7.1.0 をinstallする yarn install &amp;&amp; yarn dev  以上です。">
+Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。">
 <meta property="og:image" content="https://kohey.github.io/images/kohey.PNG" />
 <meta property="og:url" content="https://kohey.github.io/post/2021-09-12-m1%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7nuxt%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%81%85%E3%81%84/" />
 <meta property="og:type" content="website" />
@@ -99,8 +89,7 @@ Intelマシンではnode12x系のバージョンを使っていたが、M1では
 
   <meta name="twitter:title" content="2021 09 12 M1マシンでNuxtのビルドが遅い" />
   <meta name="twitter:description" content="こんにちは、かわそんです。
-Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。
-状況  シンプルなNuxtプロジェクトをcloneしてきた(例: https://github.com/kohey/nuxt-on-m1) yarn install したが通常より明らかに時間がかかっている yarn …">
+Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。">
   <meta name="twitter:image" content="https://kohey.github.io/images/kohey.PNG" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@KKohey4" />
@@ -305,7 +294,6 @@ Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マ�
 </ol>
 <p>以上です。</p>
 
-
         
           <div class="blog-tags">
             
@@ -382,7 +370,7 @@ Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マ�
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kohey.github.io/post/2017-03-20-photoswipe-gallery-sample/" data-toggle="tooltip" data-placement="top" title="Photoswipe Gallery Sample">&larr; 前ページ</a>
+              <a href="https://kohey.github.io/post/2021-09-11-create-blog-1/" data-toggle="tooltip" data-placement="top" title="最初の記事">&larr; 前ページ</a>
             </li>
           
           
