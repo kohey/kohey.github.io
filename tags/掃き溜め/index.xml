@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on かわそんの掃き溜め</title>
-    <link>https://kohey.github.io/post/</link>
-    <description>Recent content in Posts on かわそんの掃き溜め</description>
+    <title>掃き溜め on かわそんの掃き溜め</title>
+    <link>https://kohey.github.io/tags/%E6%8E%83%E3%81%8D%E6%BA%9C%E3%82%81/</link>
+    <description>Recent content in 掃き溜め on かわそんの掃き溜め</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 12 Sep 2021 17:52:28 +0900</lastBuildDate><atom:link href="https://kohey.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Sep 2021 17:52:28 +0900</lastBuildDate><atom:link href="https://kohey.github.io/tags/%E6%8E%83%E3%81%8D%E6%BA%9C%E3%82%81/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RDSの歴史・immutability・validationについて</title>
       <link>https://kohey.github.io/post/ddd%E3%81%A8rdb%E3%81%AE%E8%B7%9D%E9%9B%A2/</link>
@@ -36,25 +36,6 @@ value obj は値によって等価であるとみなすので、インスタン�
 ・例外
 あり得るものを弾く
 防御的プログラミング 堅牢性を重んじるときにおきがち。</description>
-    </item>
-    
-    <item>
-      <title>2021 09 12 M1マシンでNuxtのビルドが遅い</title>
-      <link>https://kohey.github.io/post/2021-09-12-m1%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7nuxt%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%81%85%E3%81%84/</link>
-      <pubDate>Sun, 12 Sep 2021 17:08:35 +0900</pubDate>
-      
-      <guid>https://kohey.github.io/post/2021-09-12-m1%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7nuxt%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%81%85%E3%81%84/</guid>
-      <description>&lt;p&gt;こんにちは、&lt;a href=&#34;https://twitter.com/KKohey4&#34;&gt;かわそん&lt;/a&gt;です。&lt;/p&gt;
-&lt;p&gt;Intel Macで通常通りビルドできていたNuxtプロジェクトをM1マシンに移したとき、ビルドに2時間くらいかかるという現象が起きる場合の対処法です。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>最初の記事</title>
-      <link>https://kohey.github.io/post/2021-09-11-create-blog-1/</link>
-      <pubDate>Sat, 11 Sep 2021 18:43:16 +0900</pubDate>
-      
-      <guid>https://kohey.github.io/post/2021-09-11-create-blog-1/</guid>
-      <description></description>
     </item>
     
   </channel>

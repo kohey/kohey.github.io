@@ -206,6 +206,78 @@
           
           
             <article class="post-preview">
+    <a href="https://kohey.github.io/post/ddd%E3%81%A8rdb%E3%81%AE%E8%B7%9D%E9%9B%A2/">
+        <h2 class="post-title">RDSの歴史・immutability・validationについて</h2>
+        
+        
+        
+    </a>
+
+    <p class="post-meta">
+        <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;September 12, 2021に投稿
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;分間
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;80&nbsp;言葉
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Kohey
+    
+  
+  
+</span>
+
+
+    </p>
+    <div class="post-entry">
+        
+        texta.fm#1・2からの学び
+RDBが勢力伸ばした理由、immutability、validationについて。
+RDBについて ORマッパー誕生の背景 ActiveRecordは、ORマッパーを構成するアーキテクチャパターン
+ORマッパーはObjectモデルとRDSモデルの1:1のインピーダンスミスマッチを解消したかったから。
+なんでRDSが勢力伸ばした？ インスタンスをDBにストアできれば一番ええやん？ =&gt; OODB
+これが一番マッピングもいらんからいいやん
+RDBMS: 資金が潤沢に投入された &amp; 背後の理論が純粋で強固だった =&gt; RDBがOODBを上回った
+Railsはデータモデリングが全て的なことがある。DB設計をバチっと決めたら全部上手くいくじゃん。
+ immutabilityについて value obj が immutabilityを満たさないと、値の共有を安全にできなくなる。
+value obj は値によって等価であるとみなすので、インスタンスが違っても同じになりうる。
+メリット 普遍なので複数prop =&gt; 組み合わせで状態を決定する =&gt; 穴があるとおかしくなる =&gt; このような状態が起こらないことを保証できる
+目の前のことを信頼できる、ということ。 状態が確定している。
+デメリット objは短命である場合、メモリの消費が増えること。
+が、小さいobjをガンガン作って、ガンガン消していく、のは、obj志向プログラミングで一番想定されているので、問題なし。 Railsでreq -&gt; res までに大量のsymbolを作成している。　1個のプロセスを効率よく使えれば、あとはスケールアウトさせるだけでは？
+これはnodeのモデル
+ムーアが頭打ちになってきている -&gt; コアを並べてマルチにしよう -&gt; いや、クラウド出てきた -&gt; shared nothing のインスタンスを横に並べて、elastic にスケールさせた方がいいし、冗長性的にもいい。
+ validationについて アサーションエラーと例外の使い分け
+元々は画面に近い存在
+契約による設計 ・アサーション(表明)
+事前条件の契約 = 守らなかったら知らないぜ？
+事前条件を満たしていないもの、あり得ないでしょ、という状態を弾く
+・例外
+あり得るものを弾く
+防御的プログラミング 堅牢性を重んじるときにおきがち。
+        <a href="https://kohey.github.io/post/ddd%E3%81%A8rdb%E3%81%AE%E8%B7%9D%E9%9B%A2/" class="post-read-more">[続きを読む]</a>
+        
+    </div>
+
+    
+    <div class="blog-tags">
+        
+        <a href="https://kohey.github.io/tags/texta.fm/">texta.fm</a>&nbsp;
+        
+        <a href="https://kohey.github.io/tags/%E6%8E%83%E3%81%8D%E6%BA%9C%E3%82%81/">掃き溜め</a>&nbsp;
+        
+    </div>
+    
+
+</article>
+          
+            <article class="post-preview">
     <a href="https://kohey.github.io/post/2021-09-12-m1%E3%83%9E%E3%82%B7%E3%83%B3%E3%81%A7nuxt%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E3%81%8C%E9%81%85%E3%81%84/">
         <h2 class="post-title">2021 09 12 M1マシンでNuxtのビルドが遅い</h2>
         
