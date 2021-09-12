@@ -8,7 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <title>RDSの歴史・immutability・validationについて - かわそんの掃き溜め</title>
-  <meta name="description" content="texta.fm#1・2からの学び
+  <meta name="description" content="こんにちは、かわそんです。
+texta.fm#1・2から学んだことをまとめます。
 RDBが勢力伸ばした理由、immutability、validationについて。">
   <meta name="author" content="Kohey"/><script type="application/ld+json">
 {
@@ -58,9 +59,9 @@ RDBが勢力伸ばした理由、immutability、validationについて。">
     "name" : "Kohey"
   },
   "headline": "RDSの歴史・immutability・validationについて",
-  "description" : "texta.fm#1・2からの学び\nRDBが勢力伸ばした理由、immutability、validationについて。\n",
+  "description" : "こんにちは、かわそんです。\ntexta.fm#1・2から学んだことをまとめます。 RDBが勢力伸ばした理由、immutability、validationについて。\n",
   "inLanguage" : "ja",
-  "wordCount":  80 ,
+  "wordCount":  81 ,
   "datePublished" : "2021-09-12T17:52:28",
   "dateModified" : "2021-09-12T17:52:28",
   "image" : "https:\/\/kohey.github.io\/images\/kohey.PNG",
@@ -80,7 +81,8 @@ RDBが勢力伸ばした理由、immutability、validationについて。">
 </script>
 
 <meta property="og:title" content="RDSの歴史・immutability・validationについて" />
-<meta property="og:description" content="texta.fm#1・2からの学び
+<meta property="og:description" content="こんにちは、かわそんです。
+texta.fm#1・2から学んだことをまとめます。
 RDBが勢力伸ばした理由、immutability、validationについて。">
 <meta property="og:image" content="https://kohey.github.io/images/kohey.PNG" />
 <meta property="og:url" content="https://kohey.github.io/post/ddd%E3%81%A8rdb%E3%81%AE%E8%B7%9D%E9%9B%A2/" />
@@ -88,7 +90,8 @@ RDBが勢力伸ばした理由、immutability、validationについて。">
 <meta property="og:site_name" content="かわそんの掃き溜め" />
 
   <meta name="twitter:title" content="RDSの歴史・immutability・validationについて" />
-  <meta name="twitter:description" content="texta.fm#1・2からの学び
+  <meta name="twitter:description" content="こんにちは、かわそんです。
+texta.fm#1・2から学んだことをまとめます。
 RDBが勢力伸ばした理由、immutability、validationについて。">
   <meta name="twitter:image" content="https://kohey.github.io/images/kohey.PNG" />
   <meta name="twitter:card" content="summary" />
@@ -245,7 +248,7 @@ RDBが勢力伸ばした理由、immutability、validationについて。">
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;分間
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;80&nbsp;言葉
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;81&nbsp;言葉
   
   
     
@@ -270,52 +273,53 @@ RDBが勢力伸ばした理由、immutability、validationについて。">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>texta.fm#1・2からの学び<br>
+        <p>こんにちは、<a href="https://twitter.com/KKohey4">かわそん</a>です。</p>
+<p>texta.fm#1・2から学んだことをまとめます。
 RDBが勢力伸ばした理由、immutability、validationについて。</p>
 <h2 id="rdbについて">RDBについて</h2>
 <h3 id="orマッパー誕生の背景">ORマッパー誕生の背景</h3>
-<p>ActiveRecordは、ORマッパーを構成するアーキテクチャパターン<br>
-ORマッパーはObjectモデルとRDSモデルの1:1のインピーダンスミスマッチを解消したかったから。</p>
+<p>ActiveRecordは、ORマッパーを構成するアーキテクチャパターン</p>
+<p>ORマッパーはObjectモデルとRDSモデルの1:1のインピーダンスミスマッチを解消したかったから。</p>
 <h3 id="なんでrdsが勢力伸ばした">なんでRDSが勢力伸ばした？</h3>
-<p>インスタンスをDBにストアできれば一番ええやん？ =&gt; OODB<br>
-これが一番マッピングもいらんからいいやん<br>
-RDBMS: 資金が潤沢に投入された &amp; 背後の理論が純粋で強固だった =&gt; RDBがOODBを上回った<br>
-Railsはデータモデリングが全て的なことがある。DB設計をバチっと決めたら全部上手くいくじゃん。</p>
+<p>インスタンスをDBにストアできれば一番ええやん？ =&gt; OODB</p>
+<p>これが一番マッピングもいらんからいいやん</p>
+<p>RDBMS: 資金が潤沢に投入された &amp; 背後の理論が純粋で強固だった =&gt; RDBがOODBを上回った</p>
+<p>Railsはデータモデリングが全て的なことがある。DB設計をバチっと決めたら全部上手くいくじゃん。</p>
 <hr>
 <h2 id="immutabilityについて">immutabilityについて</h2>
-<p>value obj が immutabilityを満たさないと、値の共有を安全にできなくなる。<br>
-value obj は値によって等価であるとみなすので、インスタンスが違っても同じになりうる。</p>
+<p>value obj が immutabilityを満たさないと、値の共有を安全にできなくなる。</p>
+<p>value obj は値によって等価であるとみなすので、インスタンスが違っても同じになりうる。</p>
 <h3 id="メリット">メリット</h3>
-<p>普遍なので複数prop =&gt; 組み合わせで状態を決定する =&gt; 穴があるとおかしくなる =&gt; このような状態が起こらないことを保証できる<br>
-目の前のことを信頼できる、ということ。
-状態が確定している。</p>
+<p>普遍なので複数prop =&gt; 組み合わせで状態を決定する =&gt; 穴があるとおかしくなる =&gt; このような状態が起こらないことを保証できる</p>
+<p>目の前のことを信頼できる、ということ。</p>
+<p>状態が確定している。</p>
 <h3 id="デメリット">デメリット</h3>
-<p>objは短命である場合、メモリの消費が増えること。<br>
-が、小さいobjをガンガン作って、ガンガン消していく、のは、obj志向プログラミングで一番想定されているので、問題なし。 <br>
-Railsでreq -&gt; res までに大量のsymbolを作成している。　　</p>
-<p>1個のプロセスを効率よく使えれば、あとはスケールアウトさせるだけでは？<br>
-これはnodeのモデル</p>
+<p>objは短命である場合、メモリの消費が増えること。</p>
+<p>が、小さいobjをガンガン作って、ガンガン消していく、のは、obj志向プログラミングで一番想定されているので、問題なし。</p>
+<p>Railsでreq -&gt; res までに大量のsymbolを作成している。　　</p>
+<p>1個のプロセスを効率よく使えれば、あとはスケールアウトさせるだけでは？</p>
+<p>これはnodeのモデル</p>
 <p>ムーアが頭打ちになってきている -&gt; コアを並べてマルチにしよう -&gt; いや、クラウド出てきた -&gt; shared nothing のインスタンスを横に並べて、elastic にスケールさせた方がいいし、冗長性的にもいい。</p>
 <hr>
 <h2 id="validationについて">validationについて</h2>
-<p>アサーションエラーと例外の使い分け<br>
-元々は画面に近い存在</p>
+<p>アサーションエラーと例外の使い分け</p>
+<p>元々は画面に近い存在</p>
 <h3 id="契約による設計">契約による設計</h3>
 <p>・アサーション(表明)<br>
-事前条件の契約 = 守らなかったら知らないぜ？<br>
-事前条件を満たしていないもの、あり得ないでしょ、という状態を弾く</p>
+事前条件の契約 = 守らなかったら知らないぜ？</p>
+<p>事前条件を満たしていないもの、あり得ないでしょ、という状態を弾く</p>
 <p>・例外<br>
 あり得るものを弾く</p>
 <h3 id="防御的プログラミング">防御的プログラミング</h3>
-<p>堅牢性を重んじるときにおきがち。<br>
-メソッドの上にガード節が並ぶやつ<br>
-局所最適になっている = 誰もルール守ってないかもだから、ここではガードする、というのが全体で起きている = 全体では同じようなガードを随所でしている<br>
-全体最適を目指すときに、「やりとりのルールを決めてガードしない」、契約による設計をする</p>
+<p>堅牢性を重んじるときにおきがち。</p>
+<p>メソッドの上にガード節が並ぶやつ</p>
+<p>局所最適になっている = 誰もルール守ってないかもだから、ここではガードする、というのが全体で起きている = 全体では同じようなガードを随所でしている</p>
+<p>全体最適を目指すときに、「やりとりのルールを決めてガードしない」、契約による設計をする</p>
 <p>ユーザに近いところではディフェンスして、それを通ったら、もうガードしないよ。ウチだから。</p>
 <h3 id="dhh">DHH</h3>
-<p>画面の入力項目って、DBのカラムって、ほとんど一緒っていうか、一緒にできるくない？<br>
-じゃあ一緒にしちゃえば、登場人物減らせるじゃん！<br>
-フォームオブジェクトを不要にできるじゃん。</p>
+<p>画面の入力項目って、DBのカラムって、ほとんど一緒っていうか、一緒にできるくない？</p>
+<p>じゃあ一緒にしちゃえば、登場人物減らせるじゃん！</p>
+<p>フォームオブジェクトを不要にできるじゃん。</p>
 
         
           <div class="blog-tags">

@@ -12,7 +12,8 @@
       <pubDate>Sun, 12 Sep 2021 17:52:28 +0900</pubDate>
       
       <guid>https://kohey.github.io/post/ddd%E3%81%A8rdb%E3%81%AE%E8%B7%9D%E9%9B%A2/</guid>
-      <description>&lt;p&gt;texta.fm#1・2からの学び&lt;br&gt;
+      <description>&lt;p&gt;こんにちは、&lt;a href=&#34;https://twitter.com/KKohey4&#34;&gt;かわそん&lt;/a&gt;です。&lt;/p&gt;
+&lt;p&gt;texta.fm#1・2から学んだことをまとめます。
 RDBが勢力伸ばした理由、immutability、validationについて。&lt;/p&gt;</description>
     </item>
     
@@ -41,8 +42,9 @@ RDBが勢力伸ばした理由、immutability、validationについて。&lt;/p&
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://kohey.github.io/page/about/</guid>
-      <description>渋谷で働くWeb系エンジニアです。
-開発で得られた知見や、エラーとの格闘日々を記録します
+      <description>21年新卒の、渋谷で働くWeb系エンジニアです。
+業務では主にnodeを書いています。
+開発で得られた知見や、エラーとの格闘日々を記録します。
 skill 仕事で使ったことがあるもの  Ruby(Rails) Golang(chi・echo) Node(mongoose・mongo) Vue(Nuxt) Kubernetes  趣味レベル  Python swift GCP・AWS  </description>
     </item>
     
