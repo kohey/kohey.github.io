@@ -12,19 +12,8 @@
       <pubDate>Thu, 23 Sep 2021 16:27:59 +0900</pubDate>
       
       <guid>https://kohey.github.io/post/vscode%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%9F%E3%82%89%E6%9C%80%E5%88%9D%E3%81%AB%E3%82%84%E3%82%8B%E3%81%93%E3%81%A8/</guid>
-      <description>VSCodeをインストールしたら最初に入れておくべきプラグインです。
-これがないと仕事にならない
-Japanese Language Pack 日本人なので
-Docker バックエンドエンジニアなので。
-あんまり使うことないけど、人に教えるときにあると便利
-Go Gopherなので
-Vutur Vue書くので
-Gitlends 差分管理をしやすくする、blameしやすくするため
-Prettier フォーマット作業は人間の仕事ではないので
-PlantUML UMLの図を書くため
-Add jsdoc comments jsdocのコメント表記はなるべく自動で生成しておきたい
-その他の設定 コピペするならインデントを維持したい setttings.jsonに下記を追記する
-&amp;#34;editor.formatOnPaste&amp;#34;: true, </description>
+      <description>&lt;p&gt;VSCodeをインストールしたら最初に入れておくべきプラグインです。&lt;br&gt;
+これがないと仕事にならない&lt;/p&gt;</description>
     </item>
     
     <item>
