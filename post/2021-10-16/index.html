@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ja" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Dockerでmongo環境を構築し、本番データを投入して監視してみる - かわそんの掃き溜め</title>
+  <meta name="description" content="こんにちは、かわそんです。
+本番データに対してローカルでコマンドを当てて、いろんなデータをとってみたい。
+でも、ローカル環境は汚したくないので、あくまでもDocker上で構築したい。
+この方法を解説します。
+手順  docker-compose で mongo と mongo-express を導入 コンテナにローカルからファイルを転送 コンテナに入る mongo shell に入れることを確認 mongorestore する freeMonitoringを有効にする 発行されたuniq な url でモニタリングしつつ、mem でメモリ差分を取得  1. docker-compose で mongo と mongo-express を導入 docker-compose でサクッと構築。
+こんな感じ。 外部に公開しないので、env周りは適当ですが、何かしらの設定は必須です。 設定しないと手順 4 or 5 で unauthorized と怒られます。
+version: &#39;3&#39; services: mongo: image: mongo:latest restart: always environment: MONGO_INITDB_ROOT_USERNAME: root MONGO_INITDB_ROOT_PASSWORD: password ports: - 27017:27017 volumes: - mongo:/data/db - mongo:/data/configdb mongo-express: image: mongo-express restart: always ports: - 8081:8081 environment: ME_CONFIG_MONGODB_SERVER: mongo ME_CONFIG_MONGODB_PORT: 27017 ME_CONFIG_MONGODB_ADMINUSERNAME: root ME_CONFIG_MONGODB_ADMINPASSWORD: password depends_on: - mongo volumes: mongo: インデントなどは調整してください。 問題なければ docker-compose up -d しておきます。">
+  <meta name="author" content="Kohey"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "かわそんの掃き溜め",
+    
+    "url": "https:\/\/kohey.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/kohey.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/kohey.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/kohey.github.io\/post\/2021-10-16\/",
+          "name": "Dockerでmongo環境を構築し、本番データを投入して監視してみる"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Kohey"
+  },
+  "headline": "Dockerでmongo環境を構築し、本番データを投入して監視してみる",
+  "description" : "こんにちは、かわそんです。\n本番データに対してローカルでコマンドを当てて、いろんなデータをとってみたい。\nでも、ローカル環境は汚したくないので、あくまでもDocker上で構築したい。\nこの方法を解説します。\n手順  docker-compose で mongo と mongo-express を導入 コンテナにローカルからファイルを転送 コンテナに入る mongo shell に入れることを確認 mongorestore する freeMonitoringを有効にする 発行されたuniq な url でモニタリングしつつ、mem でメモリ差分を取得  1. docker-compose で mongo と mongo-express を導入 docker-compose でサクッと構築。\nこんな感じ。 外部に公開しないので、env周りは適当ですが、何かしらの設定は必須です。 設定しないと手順 4 or 5 で unauthorized と怒られます。\nversion: \u0026#39;3\u0026#39; services: mongo: image: mongo:latest restart: always environment: MONGO_INITDB_ROOT_USERNAME: root MONGO_INITDB_ROOT_PASSWORD: password ports: - 27017:27017 volumes: - mongo:\/data\/db - mongo:\/data\/configdb mongo-express: image: mongo-express restart: always ports: - 8081:8081 environment: ME_CONFIG_MONGODB_SERVER: mongo ME_CONFIG_MONGODB_PORT: 27017 ME_CONFIG_MONGODB_ADMINUSERNAME: root ME_CONFIG_MONGODB_ADMINPASSWORD: password depends_on: - mongo volumes: mongo: インデントなどは調整してください。 問題なければ docker-compose up -d しておきます。",
+  "inLanguage" : "ja",
+  "wordCount":  214 ,
+  "datePublished" : "2021-10-16T20:54:49",
+  "dateModified" : "2021-10-16T20:54:49",
+  "image" : "https:\/\/kohey.github.io\/images\/kohey.PNG",
+  "keywords" : [ "" ],
+  "mainEntityOfPage" : "https:\/\/kohey.github.io\/post\/2021-10-16\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/kohey.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/kohey.github.io\/images\/kohey.PNG",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Dockerでmongo環境を構築し、本番データを投入して監視してみる" />
+<meta property="og:description" content="こんにちは、かわそんです。
+本番データに対してローカルでコマンドを当てて、いろんなデータをとってみたい。
+でも、ローカル環境は汚したくないので、あくまでもDocker上で構築したい。
+この方法を解説します。
+手順  docker-compose で mongo と mongo-express を導入 コンテナにローカルからファイルを転送 コンテナに入る mongo shell に入れることを確認 mongorestore する freeMonitoringを有効にする 発行されたuniq な url でモニタリングしつつ、mem でメモリ差分を取得  1. docker-compose で mongo と mongo-express を導入 docker-compose でサクッと構築。
+こんな感じ。 外部に公開しないので、env周りは適当ですが、何かしらの設定は必須です。 設定しないと手順 4 or 5 で unauthorized と怒られます。
+version: &#39;3&#39; services: mongo: image: mongo:latest restart: always environment: MONGO_INITDB_ROOT_USERNAME: root MONGO_INITDB_ROOT_PASSWORD: password ports: - 27017:27017 volumes: - mongo:/data/db - mongo:/data/configdb mongo-express: image: mongo-express restart: always ports: - 8081:8081 environment: ME_CONFIG_MONGODB_SERVER: mongo ME_CONFIG_MONGODB_PORT: 27017 ME_CONFIG_MONGODB_ADMINUSERNAME: root ME_CONFIG_MONGODB_ADMINPASSWORD: password depends_on: - mongo volumes: mongo: インデントなどは調整してください。 問題なければ docker-compose up -d しておきます。">
+<meta property="og:image" content="https://kohey.github.io/images/kohey.PNG" />
+<meta property="og:url" content="https://kohey.github.io/post/2021-10-16/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="かわそんの掃き溜め" />
+
+  <meta name="twitter:title" content="Dockerでmongo環境を構築し、本番データを投入して監視してみる" />
+  <meta name="twitter:description" content="こんにちは、かわそんです。
+本番データに対してローカルでコマンドを当てて、いろんなデータをとってみたい。
+でも、ローカル環境は汚したくないので、あくまでもDocker上で構築したい。
+この方法を解説します。
+手順  docker-compose で mongo と mongo-express を導入 コンテナにローカルからファイルを転送 コンテナに入る mongo shell …">
+  <meta name="twitter:image" content="https://kohey.github.io/images/kohey.PNG" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@KKohey4" />
+  <meta name="twitter:creator" content="@KKohey4" />
+  <link href='https://kohey.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.88.1" />
+  <link rel="alternate" href="https://kohey.github.io/index.xml" type="application/rss+xml" title="かわそんの掃き溜め"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://kohey.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kohey.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://kohey.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">メニューを切り替え</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kohey.github.io">かわそんの掃き溜め</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="かわそんの掃き溜め" href="https://kohey.github.io">
+            <img class="avatar-img" src="https://kohey.github.io/images/kohey.PNG" alt="かわそんの掃き溜め" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Dockerでmongo環境を構築し、本番データを投入して監視してみる</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;October 16, 2021に投稿
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;分間
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;214&nbsp;言葉
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Kohey
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>こんにちは、かわそんです。</p>
+<p>本番データに対してローカルでコマンドを当てて、いろんなデータをとってみたい。<br>
+でも、ローカル環境は汚したくないので、あくまでもDocker上で構築したい。</p>
+<p>この方法を解説します。</p>
+<h2 id="手順">手順</h2>
+<ol>
+<li>docker-compose で mongo と mongo-express を導入</li>
+<li>コンテナにローカルからファイルを転送</li>
+<li>コンテナに入る</li>
+<li>mongo shell に入れることを確認</li>
+<li>mongorestore する</li>
+<li>freeMonitoringを有効にする</li>
+<li>発行されたuniq な url でモニタリングしつつ、mem でメモリ差分を取得</li>
+</ol>
+<h3 id="1-docker-compose-で-mongo-と-mongo-express-を導入">1. docker-compose で mongo と mongo-express を導入</h3>
+<p>docker-compose でサクッと構築。<br>
+こんな感じ。
+外部に公開しないので、env周りは適当ですが、何かしらの設定は必須です。
+設定しないと手順 4 or 5 で <code>unauthorized</code> と怒られます。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">version: &#39;3&#39;
+services:
+  mongo:
+    image: mongo:latest
+    restart: always
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data/db
+      - mongo:/data/configdb
+ 
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+    depends_on:
+      - mongo
+ 
+  volumes:
+    mongo:
+
+</code></pre></div><p>インデントなどは調整してください。
+問題なければ <code>docker-compose up -d</code> しておきます。</p>
+<h3 id="2-コンテナにローカルからファイルを転送">2. コンテナにローカルからファイルを転送</h3>
+<p>コンテナが起動してるはずなので、<br>
+<code>docker container ls</code><br>
+でコンテナIDを取得後(containerIDとします)、ローカルからファイル転送を行います。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">docker cp LOCAL_TARGET_FILE_PATH containerID:.
+</code></pre></div><p>コンテナのルート直下に配置してますが、どこでも問題ないです。<br>
+あくまでも restore するためだけなので、仮配置してます。</p>
+<h3 id="3-コンテナに入る">3. コンテナに入る</h3>
+<p>コンテナに入ります。<br>
+bash を指定しておきます。<br>
+<code>docker exec -it containerID bash</code>
+入ったら、<code>ls</code> して転送したファイルの存在を確認しておくといいでしょう。</p>
+<h3 id="4-mongo-shell-に入れることを確認">4. mongo shell に入れることを確認</h3>
+<p>コンテナ内にいるので、mongo shell に入ります。<br>
+※ompose は 1 の状態を想定しています。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mongo -u root -p password
+</code></pre></div><h3 id="5-mongorestore-する">5. mongorestore する</h3>
+<p>本番データをコンテナ上にうつします。<br>
+ここではgzファイルの場合のコマンドを紹介しますが、状況に応じて、<a href="https://docs.mongodb.com/database-tools/mongorestore/">公式doc</a> のオプションをご参照ください。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">mongorestore --gzip --archive=GZ_FILE_NAME --nsInclude DB_NEME.COLLECTION_NAME -u root -p password
+</code></pre></div><p>認証情報を付加するようにしてください。</p>
+<h3 id="6-freemonitoringを有効にする">6. freeMonitoringを有効にする</h3>
+<p><code>use DB_NAME</code> で対象DBを使用していることを確認した後、shell で freeMonitoringを有効にします。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">db.enableFreeMonitoring()
+</code></pre></div><p>コンソールに uniq な url が発行されるので、訪れるとリアルタイムにモニタリングされてる画面が表示されます。</p>
+<p>なお、<code>localhost:8081</code> にアクセスすると、コンテナ上の db と collection に対して crud できる GUI が提供されています。</p>
+<p>query したり、export したりできるので、非常に高機能です。</p>
+<h3 id="7-発行されたuniq-な-url-でモニタリングしつつmem-でメモリ差分を取得">7. 発行されたuniq な url でモニタリングしつつ、mem でメモリ差分を取得</h3>
+<p>モニタリングはGUI上で行えますが、差分は見づらいです。
+コマンドの前後で <code>db.serverStatus().mem</code> すると、こんな出力がされてみやすいです。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">{ “bits” : 64, “resident” : 407, “virtual” : 1831, “supported” : true }
+</code></pre></div><h3 id="tips-mongo-とメモリ">TIPS: mongo とメモリ</h3>
+<p>間違いあればご指摘ください。</p>
+<p>mongo のメモリは上乗せです。<br>
+起動時は何も載ってないですが、アクセスフックによって、新規で乗ります。
+OSから配分されますが、溢れそうになると、WireTiger という mongo の心臓が使われてない占領部を追い出してくれます。</p>
+<p>手順7でモニタリングしてると、<br>
+「あれ、メモリ純増してる&hellip;」<br>
+と思いがちですが、この内部仕様が影響しています。</p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2fkohey.github.io%2fpost%2f2021-10-16%2f&amp;text=Docker%e3%81%a7mongo%e7%92%b0%e5%a2%83%e3%82%92%e6%a7%8b%e7%af%89%e3%81%97%e3%80%81%e6%9c%ac%e7%95%aa%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e6%8a%95%e5%85%a5%e3%81%97%e3%81%a6%e7%9b%a3%e8%a6%96%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b&amp;via=KKohey4" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkohey.github.io%2fpost%2f2021-10-16%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=https%3a%2f%2fkohey.github.io%2fpost%2f2021-10-16%2f&amp;title=Docker%e3%81%a7mongo%e7%92%b0%e5%a2%83%e3%82%92%e6%a7%8b%e7%af%89%e3%81%97%e3%80%81%e6%9c%ac%e7%95%aa%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e6%8a%95%e5%85%a5%e3%81%97%e3%81%a6%e7%9b%a3%e8%a6%96%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkohey.github.io%2fpost%2f2021-10-16%2f&amp;title=Docker%e3%81%a7mongo%e7%92%b0%e5%a2%83%e3%82%92%e6%a7%8b%e7%af%89%e3%81%97%e3%80%81%e6%9c%ac%e7%95%aa%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e6%8a%95%e5%85%a5%e3%81%97%e3%81%a6%e7%9b%a3%e8%a6%96%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkohey.github.io%2fpost%2f2021-10-16%2f&amp;title=Docker%e3%81%a7mongo%e7%92%b0%e5%a2%83%e3%82%92%e6%a7%8b%e7%af%89%e3%81%97%e3%80%81%e6%9c%ac%e7%95%aa%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e6%8a%95%e5%85%a5%e3%81%97%e3%81%a6%e7%9b%a3%e8%a6%96%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkohey.github.io%2fpost%2f2021-10-16%2f&amp;description=Docker%e3%81%a7mongo%e7%92%b0%e5%a2%83%e3%82%92%e6%a7%8b%e7%af%89%e3%81%97%e3%80%81%e6%9c%ac%e7%95%aa%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e6%8a%95%e5%85%a5%e3%81%97%e3%81%a6%e7%9b%a3%e8%a6%96%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kohey.github.io/post/vscode%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%9F%E3%82%89%E6%9C%80%E5%88%9D%E3%81%AB%E3%82%84%E3%82%8B%E3%81%93%E3%81%A8/" data-toggle="tooltip" data-placement="top" title="Vscodeをインストールしたら最初にやること">&larr; 前ページ</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/kohey" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/KKohey4" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Kohey
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2021
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kohey.github.io">かわそんの掃き溜め</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          起動力に<a href="https://gohugo.io">Hugo v0.88.1</a> &nbsp;&bull;&nbsp; テーマに<a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>に基づいている<a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://kohey.github.io/js/main.js"></script>
+<script src="https://kohey.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://kohey.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

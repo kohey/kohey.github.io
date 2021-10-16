@@ -5,7 +5,22 @@
     <link>https://kohey.github.io/post/</link>
     <description>Recent content in Posts on かわそんの掃き溜め</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 23 Sep 2021 16:27:59 +0900</lastBuildDate><atom:link href="https://kohey.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Oct 2021 20:54:49 +0900</lastBuildDate><atom:link href="https://kohey.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dockerでmongo環境を構築し、本番データを投入して監視してみる</title>
+      <link>https://kohey.github.io/post/2021-10-16/</link>
+      <pubDate>Sat, 16 Oct 2021 20:54:49 +0900</pubDate>
+      
+      <guid>https://kohey.github.io/post/2021-10-16/</guid>
+      <description>こんにちは、かわそんです。
+本番データに対してローカルでコマンドを当てて、いろんなデータをとってみたい。
+でも、ローカル環境は汚したくないので、あくまでもDocker上で構築したい。
+この方法を解説します。
+手順  docker-compose で mongo と mongo-express を導入 コンテナにローカルからファイルを転送 コンテナに入る mongo shell に入れることを確認 mongorestore する freeMonitoringを有効にする 発行されたuniq な url でモニタリングしつつ、mem でメモリ差分を取得  1. docker-compose で mongo と mongo-express を導入 docker-compose でサクッと構築。
+こんな感じ。 外部に公開しないので、env周りは適当ですが、何かしらの設定は必須です。 設定しないと手順 4 or 5 で unauthorized と怒られます。
+version: &amp;#39;3&amp;#39; services: mongo: image: mongo:latest restart: always environment: MONGO_INITDB_ROOT_USERNAME: root MONGO_INITDB_ROOT_PASSWORD: password ports: - 27017:27017 volumes: - mongo:/data/db - mongo:/data/configdb mongo-express: image: mongo-express restart: always ports: - 8081:8081 environment: ME_CONFIG_MONGODB_SERVER: mongo ME_CONFIG_MONGODB_PORT: 27017 ME_CONFIG_MONGODB_ADMINUSERNAME: root ME_CONFIG_MONGODB_ADMINPASSWORD: password depends_on: - mongo volumes: mongo: インデントなどは調整してください。 問題なければ docker-compose up -d しておきます。</description>
+    </item>
+    
     <item>
       <title>Vscodeをインストールしたら最初にやること</title>
       <link>https://kohey.github.io/post/vscode%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%9F%E3%82%89%E6%9C%80%E5%88%9D%E3%81%AB%E3%82%84%E3%82%8B%E3%81%93%E3%81%A8/</link>
