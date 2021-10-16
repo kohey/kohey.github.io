@@ -11,10 +11,7 @@
   <meta name="description" content="こんにちは、かわそんです。
 本番データに対してローカルでコマンドを当てて、いろんなデータをとってみたい。
 でも、ローカル環境は汚したくないので、あくまでもDocker上で構築したい。
-この方法を解説します。
-手順  docker-compose で mongo と mongo-express を導入 コンテナにローカルからファイルを転送 コンテナに入る mongo shell に入れることを確認 mongorestore する freeMonitoringを有効にする 発行されたuniq な url でモニタリングしつつ、mem でメモリ差分を取得  1. docker-compose で mongo と mongo-express を導入 docker-compose でサクッと構築。
-こんな感じ。 外部に公開しないので、env周りは適当ですが、何かしらの設定は必須です。 設定しないと手順 4 or 5 で unauthorized と怒られます。
-version: &#39;3&#39; services: mongo: image: mongo:latest restart: always environment: MONGO_INITDB_ROOT_USERNAME: root MONGO_INITDB_ROOT_PASSWORD: password ports: - 27017:27017 volumes: - mongo:/data/db - mongo:/data/configdb mongo-express: image: mongo-express restart: always ports: - 8081:8081 environment: ME_CONFIG_MONGODB_SERVER: mongo ME_CONFIG_MONGODB_PORT: 27017 ME_CONFIG_MONGODB_ADMINUSERNAME: root ME_CONFIG_MONGODB_ADMINPASSWORD: password depends_on: - mongo volumes: mongo: インデントなどは調整してください。 問題なければ docker-compose up -d しておきます。">
+この方法を解説します。">
   <meta name="author" content="Kohey"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -63,7 +60,7 @@ version: &#39;3&#39; services: mongo: image: mongo:latest restart: always enviro
     "name" : "Kohey"
   },
   "headline": "Dockerでmongo環境を構築し、本番データを投入して監視してみる",
-  "description" : "こんにちは、かわそんです。\n本番データに対してローカルでコマンドを当てて、いろんなデータをとってみたい。\nでも、ローカル環境は汚したくないので、あくまでもDocker上で構築したい。\nこの方法を解説します。\n手順  docker-compose で mongo と mongo-express を導入 コンテナにローカルからファイルを転送 コンテナに入る mongo shell に入れることを確認 mongorestore する freeMonitoringを有効にする 発行されたuniq な url でモニタリングしつつ、mem でメモリ差分を取得  1. docker-compose で mongo と mongo-express を導入 docker-compose でサクッと構築。\nこんな感じ。 外部に公開しないので、env周りは適当ですが、何かしらの設定は必須です。 設定しないと手順 4 or 5 で unauthorized と怒られます。\nversion: \u0026#39;3\u0026#39; services: mongo: image: mongo:latest restart: always environment: MONGO_INITDB_ROOT_USERNAME: root MONGO_INITDB_ROOT_PASSWORD: password ports: - 27017:27017 volumes: - mongo:\/data\/db - mongo:\/data\/configdb mongo-express: image: mongo-express restart: always ports: - 8081:8081 environment: ME_CONFIG_MONGODB_SERVER: mongo ME_CONFIG_MONGODB_PORT: 27017 ME_CONFIG_MONGODB_ADMINUSERNAME: root ME_CONFIG_MONGODB_ADMINPASSWORD: password depends_on: - mongo volumes: mongo: インデントなどは調整してください。 問題なければ docker-compose up -d しておきます。",
+  "description" : "こんにちは、かわそんです。\n本番データに対してローカルでコマンドを当てて、いろんなデータをとってみたい。\nでも、ローカル環境は汚したくないので、あくまでもDocker上で構築したい。\nこの方法を解説します。\n",
   "inLanguage" : "ja",
   "wordCount":  214 ,
   "datePublished" : "2021-10-16T20:54:49",
@@ -88,10 +85,7 @@ version: &#39;3&#39; services: mongo: image: mongo:latest restart: always enviro
 <meta property="og:description" content="こんにちは、かわそんです。
 本番データに対してローカルでコマンドを当てて、いろんなデータをとってみたい。
 でも、ローカル環境は汚したくないので、あくまでもDocker上で構築したい。
-この方法を解説します。
-手順  docker-compose で mongo と mongo-express を導入 コンテナにローカルからファイルを転送 コンテナに入る mongo shell に入れることを確認 mongorestore する freeMonitoringを有効にする 発行されたuniq な url でモニタリングしつつ、mem でメモリ差分を取得  1. docker-compose で mongo と mongo-express を導入 docker-compose でサクッと構築。
-こんな感じ。 外部に公開しないので、env周りは適当ですが、何かしらの設定は必須です。 設定しないと手順 4 or 5 で unauthorized と怒られます。
-version: &#39;3&#39; services: mongo: image: mongo:latest restart: always environment: MONGO_INITDB_ROOT_USERNAME: root MONGO_INITDB_ROOT_PASSWORD: password ports: - 27017:27017 volumes: - mongo:/data/db - mongo:/data/configdb mongo-express: image: mongo-express restart: always ports: - 8081:8081 environment: ME_CONFIG_MONGODB_SERVER: mongo ME_CONFIG_MONGODB_PORT: 27017 ME_CONFIG_MONGODB_ADMINUSERNAME: root ME_CONFIG_MONGODB_ADMINPASSWORD: password depends_on: - mongo volumes: mongo: インデントなどは調整してください。 問題なければ docker-compose up -d しておきます。">
+この方法を解説します。">
 <meta property="og:image" content="https://kohey.github.io/images/kohey.PNG" />
 <meta property="og:url" content="https://kohey.github.io/post/2021-10-16/" />
 <meta property="og:type" content="website" />
@@ -101,8 +95,7 @@ version: &#39;3&#39; services: mongo: image: mongo:latest restart: always enviro
   <meta name="twitter:description" content="こんにちは、かわそんです。
 本番データに対してローカルでコマンドを当てて、いろんなデータをとってみたい。
 でも、ローカル環境は汚したくないので、あくまでもDocker上で構築したい。
-この方法を解説します。
-手順  docker-compose で mongo と mongo-express を導入 コンテナにローカルからファイルを転送 コンテナに入る mongo shell …">
+この方法を解説します。">
   <meta name="twitter:image" content="https://kohey.github.io/images/kohey.PNG" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@KKohey4" />
@@ -373,7 +366,6 @@ OSから配分されますが、溢れそうになると、WireTiger という m
 <p>手順7でモニタリングしてると、<br>
 「あれ、メモリ純増してる&hellip;」<br>
 と思いがちですが、この内部仕様が影響しています。</p>
-
 
         
 
