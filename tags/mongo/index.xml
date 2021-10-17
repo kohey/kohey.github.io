@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mongo on かわそんの掃き溜め</title>
+    <link>https://kohey.github.io/tags/mongo/</link>
+    <description>Recent content in mongo on かわそんの掃き溜め</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 16 Oct 2021 20:54:49 +0900</lastBuildDate><atom:link href="https://kohey.github.io/tags/mongo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dockerでmongo環境を構築し、本番データを投入して監視してみる</title>
+      <link>https://kohey.github.io/post/2021-10-16/</link>
+      <pubDate>Sat, 16 Oct 2021 20:54:49 +0900</pubDate>
+      
+      <guid>https://kohey.github.io/post/2021-10-16/</guid>
+      <description>&lt;p&gt;こんにちは、かわそんです。&lt;/p&gt;
+&lt;p&gt;本番データに対してローカルでコマンドを当てて、いろんなデータをとってみたい。&lt;br&gt;
+でも、ローカル環境は汚したくないので、あくまでもDocker上で構築したい。&lt;/p&gt;
+&lt;p&gt;この方法を解説します。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
