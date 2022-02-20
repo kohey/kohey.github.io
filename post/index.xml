@@ -5,7 +5,17 @@
     <link>https://kohey.github.io/post/</link>
     <description>Recent content in Posts on かわそんの掃き溜め</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 17 Oct 2021 16:57:49 +0900</lastBuildDate><atom:link href="https://kohey.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Feb 2022 17:32:21 +0900</lastBuildDate><atom:link href="https://kohey.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JavaScriptスタイルガイドを読んだ</title>
+      <link>https://kohey.github.io/post/javascript%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%82%AC%E3%82%A4%E3%83%89%E3%82%92%E8%AA%AD%E3%82%93%E3%81%A0/</link>
+      <pubDate>Sun, 20 Feb 2022 17:32:21 +0900</pubDate>
+      
+      <guid>https://kohey.github.io/post/javascript%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%82%AC%E3%82%A4%E3%83%89%E3%82%92%E8%AA%AD%E3%82%93%E3%81%A0/</guid>
+      <description>&lt;p&gt;Airbnbの&lt;a href=&#34;https://mitsuruog.github.io/javascript-style-guide/&#34;&gt;JavaScriptスタイルガイド&lt;/a&gt;を読んで気をつけたいと思った点をいくつか。&lt;/p&gt;
+&lt;p&gt;Object / String / Prop&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Intel Mac で動いていたRailsプロジェクトをM1に移行したら動かなくなった</title>
       <link>https://kohey.github.io/post/2021-10-17/</link>
