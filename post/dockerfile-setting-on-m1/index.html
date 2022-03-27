@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ja" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>m1マシンにrailsプロジェクトを移管した時に詰まった忘備録 - かわそんの掃き溜め</title>
+  <meta name="description" content="既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。
+ハマったこと
+ docker-compose up でgemが could not find xxxxx になって、appコンテナ作成にコケる gemのnokogiriが ERROR: It looks like you&#39;re trying to use Nokogiri as a precompiled native gem on a system with glibc &lt; 2.19: を吐いて、appコンテナ作成にコケる mysqlのimage pull が no matching manifest for linux/arm64/v8 in the manifest list entries. となってできない webpackerがWebpacker can’t find application.js in /myapp/public/packs/manifest.json となってアクセス時にエラる rails db:setup で Function not implemented - Failed to initialize inotify (Errno::ENOSYS)  対応
+ 前提として、appのimageが巨大なので、不要なデータはキャッシュ含めて消す。作成に失敗した時も容量削減のために必ず消すこと。  docker system prune docker rmi xxxx yyyy zzz docker builder prune     volumeを消して、cacheなしでbuildする   docker volume ls =&gt; docker volume rm xxx yyy docker-compose build --no-cache  Dockerfileで定義しているrubyのバージョンのスコープを限定する   FROM ruby:2.">
+  <meta name="author" content="Kohey"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "かわそんの掃き溜め",
+    
+    "url": "https:\/\/kohey.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/kohey.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/kohey.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/kohey.github.io\/post\/dockerfile-setting-on-m1\/",
+          "name": "M1マシンにrailsプロジェクトを移管した時に詰まった忘備録"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Kohey"
+  },
+  "headline": "m1マシンにrailsプロジェクトを移管した時に詰まった忘備録",
+  "description" : "既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。\nハマったこと\n docker-compose up でgemが could not find xxxxx になって、appコンテナ作成にコケる gemのnokogiriが ERROR: It looks like you\u0027re trying to use Nokogiri as a precompiled native gem on a system with glibc \u0026lt; 2.19: を吐いて、appコンテナ作成にコケる mysqlのimage pull が no matching manifest for linux\/arm64\/v8 in the manifest list entries. となってできない webpackerがWebpacker can’t find application.js in \/myapp\/public\/packs\/manifest.json となってアクセス時にエラる rails db:setup で Function not implemented - Failed to initialize inotify (Errno::ENOSYS)  対応\n 前提として、appのimageが巨大なので、不要なデータはキャッシュ含めて消す。作成に失敗した時も容量削減のために必ず消すこと。  docker system prune docker rmi xxxx yyyy zzz docker builder prune     volumeを消して、cacheなしでbuildする   docker volume ls =\u0026gt; docker volume rm xxx yyy docker-compose build --no-cache  Dockerfileで定義しているrubyのバージョンのスコープを限定する   FROM ruby:2.",
+  "inLanguage" : "ja",
+  "wordCount":  257 ,
+  "datePublished" : "2022-03-27T17:29:33",
+  "dateModified" : "2022-03-27T17:29:33",
+  "image" : "https:\/\/kohey.github.io\/images\/kohey.PNG",
+  "keywords" : [ "" ],
+  "mainEntityOfPage" : "https:\/\/kohey.github.io\/post\/dockerfile-setting-on-m1\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/kohey.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/kohey.github.io\/images\/kohey.PNG",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="m1マシンにrailsプロジェクトを移管した時に詰まった忘備録" />
+<meta property="og:description" content="既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。
+ハマったこと
+ docker-compose up でgemが could not find xxxxx になって、appコンテナ作成にコケる gemのnokogiriが ERROR: It looks like you&#39;re trying to use Nokogiri as a precompiled native gem on a system with glibc &lt; 2.19: を吐いて、appコンテナ作成にコケる mysqlのimage pull が no matching manifest for linux/arm64/v8 in the manifest list entries. となってできない webpackerがWebpacker can’t find application.js in /myapp/public/packs/manifest.json となってアクセス時にエラる rails db:setup で Function not implemented - Failed to initialize inotify (Errno::ENOSYS)  対応
+ 前提として、appのimageが巨大なので、不要なデータはキャッシュ含めて消す。作成に失敗した時も容量削減のために必ず消すこと。  docker system prune docker rmi xxxx yyyy zzz docker builder prune     volumeを消して、cacheなしでbuildする   docker volume ls =&gt; docker volume rm xxx yyy docker-compose build --no-cache  Dockerfileで定義しているrubyのバージョンのスコープを限定する   FROM ruby:2.">
+<meta property="og:image" content="https://kohey.github.io/images/kohey.PNG" />
+<meta property="og:url" content="https://kohey.github.io/post/dockerfile-setting-on-m1/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="かわそんの掃き溜め" />
+
+  <meta name="twitter:title" content="m1マシンにrailsプロジェクトを移管した時に詰まった忘備録" />
+  <meta name="twitter:description" content="既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。
+ハマったこと
+ docker-compose up でgemが could not find xxxxx になって、appコンテナ作成にコケる gemのnokogiriが ERROR: It looks like you&#39;re trying to use …">
+  <meta name="twitter:image" content="https://kohey.github.io/images/kohey.PNG" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@KKohey4" />
+  <meta name="twitter:creator" content="@KKohey4" />
+  <link href='https://kohey.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.88.1" />
+  <link rel="alternate" href="https://kohey.github.io/index.xml" type="application/rss+xml" title="かわそんの掃き溜め"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://kohey.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://kohey.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://kohey.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">メニューを切り替え</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://kohey.github.io">かわそんの掃き溜め</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="かわそんの掃き溜め" href="https://kohey.github.io">
+            <img class="avatar-img" src="https://kohey.github.io/images/kohey.PNG" alt="かわそんの掃き溜め" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>m1マシンにrailsプロジェクトを移管した時に詰まった忘備録</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;March 27, 2022に投稿
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;分間
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;257&nbsp;言葉
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Kohey
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。</p>
+<p><code>ハマったこと</code></p>
+<ol>
+<li><code>docker-compose up</code> でgemが <code>could not find xxxxx</code> になって、appコンテナ作成にコケる</li>
+<li>gemの<code>nokogiri</code>が <code>ERROR: It looks like you're trying to use Nokogiri as a precompiled native gem on a system with glibc &lt; 2.19:</code> を吐いて、appコンテナ作成にコケる</li>
+<li>mysqlのimage pull が <code>no matching manifest for linux/arm64/v8 in the manifest list entries.</code> となってできない</li>
+<li>webpackerが<code>Webpacker can’t find application.js in /myapp/public/packs/manifest.json</code> となってアクセス時にエラる</li>
+<li><code>rails db:setup</code> で <code>Function not implemented - Failed to initialize inotify (Errno::ENOSYS)</code></li>
+</ol>
+<p><code>対応</code></p>
+<ul>
+<li>前提として、appのimageが巨大なので、不要なデータはキャッシュ含めて消す。作成に失敗した時も容量削減のために必ず消すこと。
+<ul>
+<li><code>docker system prune</code></li>
+<li><code>docker rmi xxxx yyyy zzz</code></li>
+<li><code>docker builder prune</code></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>volumeを消して、cacheなしでbuildする</li>
+</ol>
+<ul>
+<li><code>docker volume ls</code> =&gt; <code>docker volume rm xxx yyy</code></li>
+<li><code>docker-compose build --no-cache</code></li>
+</ul>
+<ol start="2">
+<li>Dockerfileで定義しているrubyのバージョンのスコープを限定する</li>
+</ol>
+<ul>
+<li><code>FROM ruby:2.6.4</code> =&gt;  <code>FROM amd64/ruby:2.6.4</code></li>
+</ul>
+<ol start="3">
+<li>platformを指定する</li>
+</ol>
+<ul>
+<li><code>platform=linux/x86_64</code></li>
+</ul>
+<ol start="4">
+<li>manifest.jsを作って下記を記述</li>
+<li>development.yamlを修正する</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">//= link_tree ../fonts &lt;-自分の環境n合わせること
+//= link_directory ../javascripts .js
+//= link_directory ../stylesheets .css
+</code></pre></div><hr>
+<p><code>構成</code></p>
+<ul>
+<li>docker-compose.yml</li>
+<li>docker-compose-override.yaml</li>
+<li>Dockerfile.development
+を利用</li>
+</ul>
+<p><code>詳細</code>
+docker-compose.yaml<br>
+基本的な定義のみを記述している。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">services:
+  databse:
+    restart: always
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    ....
+  redis:
+    image: redis:latest
+    volumes:
+      - ./tmp/redis:/data
+volumes:
+  mysql-datavolume:
+    driver: local
+  bundle:
+    driver: local
+</code></pre></div><p>docker-compose-override.yaml
+app定義を記述</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">app:
+  ports:
+    - 3000:3000
+  build:
+    context: .
+    dockerfile: Dockerfile.development
+  command: xxxx
+  ....
+database:
+    ports:
+      - xxxxx
+  redis:
+    ports:
+      - xxxx
+
+</code></pre></div><p>Dockerfile.development
+stepを定義</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">FROM node:14 as node
+FROM ruby:2.6.4
+...
+</code></pre></div><hr>
+<h2 id="それぞれの原因">それぞれの原因</h2>
+<h3 id="1-gem-の-could-not-find-xxx-問題">1. gem の <code>could not find xxx</code> 問題</h3>
+<p>cacheが残っていると Dockerfile.development の bundle install step を上手く実行してくれない。</p>
+<p>volumeを消して再度buildすれば問題ない。<br>
+ただし、imageが巨大な場合はtimeoutするかもなので、docker-compose up で一気にやるのは良くなくて、mysql や redis などの image 提供元があるものに関しては skip したいので、<code>docker-compose build --no-cache</code> で build のみした方がいい。</p>
+<p>railsもimageに詰めようと思ったが、さらに巨大になるのは(含めなくても15GB)嫌なので、アプリは外で動かすことにしている。</p>
+<h3 id="2-nokogiri-の-glibc--219-問題">2. nokogiri の <code>glibc &lt; 2.19</code> 問題</h3>
+<p>要求されているバージョンとホストOSが提供しているバージョンがずれていることが問題。
+取得するruby image のスコープを明示的に amd64/に絞ることでOK</p>
+<h3 id="3-mysql-の-image-pull-問題">3. mysql の image pull 問題</h3>
+<p>シンプルにarmが提供されてないから。<br>
+これだけの理由でmeriaDBにするのは意味ないので、platformを指定して凌ぐこと。</p>
+<h3 id="4-webpacker-の-could-not-find-applicationxxx-問題">4. webpacker の could not find application/xxx 問題</h3>
+<p>根幹の原因は調査できていない。<br>
+とりあえず作れば動くが本質ではないので、何か知っている方いましたら教えていただきたいです。</p>
+<h3 id="5">5.</h3>
+<p>issueが上がっていた。
+<a href="https://github.com/evilmartians/terraforming-rails/issues/34#issuecomment-872021786">https://github.com/evilmartians/terraforming-rails/issues/34#issuecomment-872021786</a></p>
+<p>下記に修正すれば良さそう
+<code>config.file_watcher = ActiveSupport::FileUpdateChecker</code></p>
+<hr>
+<h2 id="実行の手順">実行の手順</h2>
+<ol>
+<li>bundle exec rails s</li>
+<li>docker-compose up</li>
+<li>(別sessionで) bundle exec rails db:setup</li>
+</ol>
+<hr>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2fkohey.github.io%2fpost%2fdockerfile-setting-on-m1%2f&amp;text=m1%e3%83%9e%e3%82%b7%e3%83%b3%e3%81%abrails%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%82%92%e7%a7%bb%e7%ae%a1%e3%81%97%e3%81%9f%e6%99%82%e3%81%ab%e8%a9%b0%e3%81%be%e3%81%a3%e3%81%9f%e5%bf%98%e5%82%99%e9%8c%b2&amp;via=KKohey4" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkohey.github.io%2fpost%2fdockerfile-setting-on-m1%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=https%3a%2f%2fkohey.github.io%2fpost%2fdockerfile-setting-on-m1%2f&amp;title=m1%e3%83%9e%e3%82%b7%e3%83%b3%e3%81%abrails%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%82%92%e7%a7%bb%e7%ae%a1%e3%81%97%e3%81%9f%e6%99%82%e3%81%ab%e8%a9%b0%e3%81%be%e3%81%a3%e3%81%9f%e5%bf%98%e5%82%99%e9%8c%b2" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkohey.github.io%2fpost%2fdockerfile-setting-on-m1%2f&amp;title=m1%e3%83%9e%e3%82%b7%e3%83%b3%e3%81%abrails%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%82%92%e7%a7%bb%e7%ae%a1%e3%81%97%e3%81%9f%e6%99%82%e3%81%ab%e8%a9%b0%e3%81%be%e3%81%a3%e3%81%9f%e5%bf%98%e5%82%99%e9%8c%b2" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkohey.github.io%2fpost%2fdockerfile-setting-on-m1%2f&amp;title=m1%e3%83%9e%e3%82%b7%e3%83%b3%e3%81%abrails%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%82%92%e7%a7%bb%e7%ae%a1%e3%81%97%e3%81%9f%e6%99%82%e3%81%ab%e8%a9%b0%e3%81%be%e3%81%a3%e3%81%9f%e5%bf%98%e5%82%99%e9%8c%b2" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkohey.github.io%2fpost%2fdockerfile-setting-on-m1%2f&amp;description=m1%e3%83%9e%e3%82%b7%e3%83%b3%e3%81%abrails%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%82%92%e7%a7%bb%e7%ae%a1%e3%81%97%e3%81%9f%e6%99%82%e3%81%ab%e8%a9%b0%e3%81%be%e3%81%a3%e3%81%9f%e5%bf%98%e5%82%99%e9%8c%b2" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://kohey.github.io/post/javascript%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%82%AC%E3%82%A4%E3%83%89%E3%82%92%E8%AA%AD%E3%82%93%E3%81%A0/" data-toggle="tooltip" data-placement="top" title="JavaScriptスタイルガイドを読んだ">&larr; 前ページ</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/kohey" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/KKohey4" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Kohey
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://kohey.github.io">かわそんの掃き溜め</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          起動力に<a href="https://gohugo.io">Hugo v0.88.1</a> &nbsp;&bull;&nbsp; テーマに<a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>に基づいている<a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://kohey.github.io/js/main.js"></script>
+<script src="https://kohey.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://kohey.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+
