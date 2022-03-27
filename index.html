@@ -237,10 +237,7 @@
     </p>
     <div class="post-entry">
         
-        既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。
-ハマったこと
- docker-compose up でgemが could not find xxxxx になって、appコンテナ作成にコケる gemのnokogiriが ERROR: It looks like you're trying to use Nokogiri as a precompiled native gem on a system with glibc &lt; 2.19: を吐いて、appコンテナ作成にコケる mysqlのimage pull が no matching manifest for linux/arm64/v8 in the manifest list entries. となってできない webpackerがWebpacker can’t find application.js in /myapp/public/packs/manifest.json となってアクセス時にエラる rails db:setup で Function not implemented - Failed to initialize inotify (Errno::ENOSYS)  対応
- 前提として、appのimageが巨大なので、不要なデータはキャッシュ含めて消す。作成に失敗した時も容量削減のために必ず消すこと。  docker system prune docker rmi xxxx yyyy zzz docker builder prune     volumeを消して、cacheなしでbuildする   docker volume ls =&gt; docker volume rm xxx yyy docker-compose build --no-cache  Dockerfileで定義しているrubyのバージョンのスコープを限定する   FROM ruby:2.
+        <p>既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。</p>
         <a href="https://kohey.github.io/post/dockerfile-setting-on-m1/" class="post-read-more">[続きを読む]</a>
         
     </div>

@@ -8,10 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <title>m1マシンにrailsプロジェクトを移管した時に詰まった忘備録 - かわそんの掃き溜め</title>
-  <meta name="description" content="既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。
-ハマったこと
- docker-compose up でgemが could not find xxxxx になって、appコンテナ作成にコケる gemのnokogiriが ERROR: It looks like you&#39;re trying to use Nokogiri as a precompiled native gem on a system with glibc &lt; 2.19: を吐いて、appコンテナ作成にコケる mysqlのimage pull が no matching manifest for linux/arm64/v8 in the manifest list entries. となってできない webpackerがWebpacker can’t find application.js in /myapp/public/packs/manifest.json となってアクセス時にエラる rails db:setup で Function not implemented - Failed to initialize inotify (Errno::ENOSYS)  対応
- 前提として、appのimageが巨大なので、不要なデータはキャッシュ含めて消す。作成に失敗した時も容量削減のために必ず消すこと。  docker system prune docker rmi xxxx yyyy zzz docker builder prune     volumeを消して、cacheなしでbuildする   docker volume ls =&gt; docker volume rm xxx yyy docker-compose build --no-cache  Dockerfileで定義しているrubyのバージョンのスコープを限定する   FROM ruby:2.">
+  <meta name="description" content="既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。">
   <meta name="author" content="Kohey"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -60,7 +57,7 @@
     "name" : "Kohey"
   },
   "headline": "m1マシンにrailsプロジェクトを移管した時に詰まった忘備録",
-  "description" : "既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。\nハマったこと\n docker-compose up でgemが could not find xxxxx になって、appコンテナ作成にコケる gemのnokogiriが ERROR: It looks like you\u0027re trying to use Nokogiri as a precompiled native gem on a system with glibc \u0026lt; 2.19: を吐いて、appコンテナ作成にコケる mysqlのimage pull が no matching manifest for linux\/arm64\/v8 in the manifest list entries. となってできない webpackerがWebpacker can’t find application.js in \/myapp\/public\/packs\/manifest.json となってアクセス時にエラる rails db:setup で Function not implemented - Failed to initialize inotify (Errno::ENOSYS)  対応\n 前提として、appのimageが巨大なので、不要なデータはキャッシュ含めて消す。作成に失敗した時も容量削減のために必ず消すこと。  docker system prune docker rmi xxxx yyyy zzz docker builder prune     volumeを消して、cacheなしでbuildする   docker volume ls =\u0026gt; docker volume rm xxx yyy docker-compose build --no-cache  Dockerfileで定義しているrubyのバージョンのスコープを限定する   FROM ruby:2.",
+  "description" : "既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。\n",
   "inLanguage" : "ja",
   "wordCount":  257 ,
   "datePublished" : "2022-03-27T17:29:33",
@@ -82,19 +79,14 @@
 </script>
 
 <meta property="og:title" content="m1マシンにrailsプロジェクトを移管した時に詰まった忘備録" />
-<meta property="og:description" content="既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。
-ハマったこと
- docker-compose up でgemが could not find xxxxx になって、appコンテナ作成にコケる gemのnokogiriが ERROR: It looks like you&#39;re trying to use Nokogiri as a precompiled native gem on a system with glibc &lt; 2.19: を吐いて、appコンテナ作成にコケる mysqlのimage pull が no matching manifest for linux/arm64/v8 in the manifest list entries. となってできない webpackerがWebpacker can’t find application.js in /myapp/public/packs/manifest.json となってアクセス時にエラる rails db:setup で Function not implemented - Failed to initialize inotify (Errno::ENOSYS)  対応
- 前提として、appのimageが巨大なので、不要なデータはキャッシュ含めて消す。作成に失敗した時も容量削減のために必ず消すこと。  docker system prune docker rmi xxxx yyyy zzz docker builder prune     volumeを消して、cacheなしでbuildする   docker volume ls =&gt; docker volume rm xxx yyy docker-compose build --no-cache  Dockerfileで定義しているrubyのバージョンのスコープを限定する   FROM ruby:2.">
+<meta property="og:description" content="既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。">
 <meta property="og:image" content="https://kohey.github.io/images/kohey.PNG" />
 <meta property="og:url" content="https://kohey.github.io/post/dockerfile-setting-on-m1/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="かわそんの掃き溜め" />
 
   <meta name="twitter:title" content="m1マシンにrailsプロジェクトを移管した時に詰まった忘備録" />
-  <meta name="twitter:description" content="既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。
-ハマったこと
- docker-compose up でgemが could not find xxxxx になって、appコンテナ作成にコケる gemのnokogiriが ERROR: It looks like you&#39;re trying to use …">
+  <meta name="twitter:description" content="既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。">
   <meta name="twitter:image" content="https://kohey.github.io/images/kohey.PNG" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@KKohey4" />
@@ -397,7 +389,6 @@ FROM ruby:2.6.4
 <li>(別sessionで) bundle exec rails db:setup</li>
 </ol>
 <hr>
-
 
         
 
