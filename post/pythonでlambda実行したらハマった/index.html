@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>m1マシンにrailsプロジェクトを移管した時に詰まった忘備録 - かわそんの掃き溜め</title>
-  <meta name="description" content="既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。">
+  <title>Pythonでlambda実行したらハマった - かわそんの掃き溜め</title>
+  <meta name="description" content="Pythonで AWS lambda を実行しようとしたらいくつかハマったので、その時の忘備録。">
   <meta name="author" content="Kohey"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -44,8 +44,8 @@
         "@type": "ListItem",
         "position": 3,
         "item": {
-          "@id": "https:\/\/kohey.github.io\/post\/dockerfile-setting-on-m1\/",
-          "name": "M1マシンにrailsプロジェクトを移管した時に詰まった忘備録"
+          "@id": "https:\/\/kohey.github.io\/post\/python%E3%81%A7lambda%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%9F%E3%82%89%E3%83%8F%E3%83%9E%E3%81%A3%E3%81%9F\/",
+          "name": "Pythonでlambda実行したらハマった"
         }
     }]
 }
@@ -56,15 +56,15 @@
   "author": {
     "name" : "Kohey"
   },
-  "headline": "m1マシンにrailsプロジェクトを移管した時に詰まった忘備録",
-  "description" : "既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。\n",
+  "headline": "Pythonでlambda実行したらハマった",
+  "description" : "Pythonで AWS lambda を実行しようとしたらいくつかハマったので、その時の忘備録。\n",
   "inLanguage" : "ja",
-  "wordCount":  257 ,
-  "datePublished" : "2022-03-27T17:29:33",
-  "dateModified" : "2022-03-27T17:29:33",
+  "wordCount":  101 ,
+  "datePublished" : "2022-04-16T13:18:14",
+  "dateModified" : "2022-04-16T13:18:14",
   "image" : "https:\/\/kohey.github.io\/images\/kohey.PNG",
   "keywords" : [ "" ],
-  "mainEntityOfPage" : "https:\/\/kohey.github.io\/post\/dockerfile-setting-on-m1\/",
+  "mainEntityOfPage" : "https:\/\/kohey.github.io\/post\/python%E3%81%A7lambda%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%9F%E3%82%89%E3%83%8F%E3%83%9E%E3%81%A3%E3%81%9F\/",
   "publisher" : {
     "@type": "Organization",
     "name" : "https:\/\/kohey.github.io",
@@ -78,15 +78,15 @@
 }
 </script>
 
-<meta property="og:title" content="m1マシンにrailsプロジェクトを移管した時に詰まった忘備録" />
-<meta property="og:description" content="既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。">
+<meta property="og:title" content="Pythonでlambda実行したらハマった" />
+<meta property="og:description" content="Pythonで AWS lambda を実行しようとしたらいくつかハマったので、その時の忘備録。">
 <meta property="og:image" content="https://kohey.github.io/images/kohey.PNG" />
-<meta property="og:url" content="https://kohey.github.io/post/dockerfile-setting-on-m1/" />
+<meta property="og:url" content="https://kohey.github.io/post/python%E3%81%A7lambda%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%9F%E3%82%89%E3%83%8F%E3%83%9E%E3%81%A3%E3%81%9F/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="かわそんの掃き溜め" />
 
-  <meta name="twitter:title" content="m1マシンにrailsプロジェクトを移管した時に詰まった忘備録" />
-  <meta name="twitter:description" content="既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。">
+  <meta name="twitter:title" content="Pythonでlambda実行したらハマった" />
+  <meta name="twitter:description" content="Pythonで AWS lambda を実行しようとしたらいくつかハマったので、その時の忘備録。">
   <meta name="twitter:image" content="https://kohey.github.io/images/kohey.PNG" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@KKohey4" />
@@ -228,7 +228,7 @@
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
               
-                <h1>m1マシンにrailsプロジェクトを移管した時に詰まった忘備録</h1>
+                <h1>Pythonでlambda実行したらハマった</h1>
               
               
               
@@ -236,13 +236,13 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;March 27, 2022に投稿
+  <i class="fas fa-calendar"></i>&nbsp;April 16, 2022に投稿
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;2&nbsp;分間
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;分間
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;257&nbsp;言葉
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;101&nbsp;言葉
   
   
     
@@ -267,128 +267,62 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>既存のRailsプロジェクトをM1マシンに移行したところかなりどハマりしたので、同じような方の助けになればと思い、記録を残します。</p>
-<p><code>ハマったこと</code></p>
+        <p>Pythonで AWS lambda を実行しようとしたらいくつかハマったので、その時の忘備録。</p>
+<p><code>ハマったこと</code>
+もちろんローカルでは動作している前提です。</p>
 <ol>
-<li><code>docker-compose up</code> でgemが <code>could not find xxxxx</code> になって、appコンテナ作成にコケる</li>
-<li>gemの<code>nokogiri</code>が <code>ERROR: It looks like you're trying to use Nokogiri as a precompiled native gem on a system with glibc &lt; 2.19:</code> を吐いて、appコンテナ作成にコケる</li>
-<li>mysqlのimage pull が <code>no matching manifest for linux/arm64/v8 in the manifest list entries.</code> となってできない</li>
-<li>webpackerが<code>Webpacker can’t find application.js in /myapp/public/packs/manifest.json</code> となってアクセス時にエラる</li>
-<li><code>rails db:setup</code> で <code>Function not implemented - Failed to initialize inotify (Errno::ENOSYS)</code></li>
+<li>実行時に <code>&quot;Unable to import module '...': No module named ...&quot;</code> が出て実行できない</li>
+<li>各種ライブラリがimportできない</li>
+<li><code>lxml</code> が <code>Couldn't find a tree builder with the features you requested: lxml. Do you need to install a parser library?</code> で import できない</li>
+<li>ファイル書き込みが <code>Read Only file xxxx</code> でできない</li>
 </ol>
-<p><code>対応</code></p>
+<hr>
+<h2 id="対処法">対処法</h2>
+<ol>
+<li>実行ファイル、関数名を設定値と合わせる
+当たり前ですが、lambda側の設定とファイル・関数を合わせる必要があります。<br>
+初期では、「lambda_function」の「lambda_handler」を実行するようになっているので、下記構成にすると動くでしょう。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">lambda_function.py
+
+  def lambda_handler(event, context):
+    some impl....
+</code></pre></div><ol start="2">
+<li>実行ファイルと同階層・かつupload時にはフォルダの「中身」をzipに固める必要がある。
+まず、サードパーティのライブラリを使う場合、実行ファイルと同階層に展開する必要があります。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">pip install xxx -t .
+</code></pre></div><p>これでルートに展開されます。</p>
+<p>そして、「この全体を」zipに固める必要があります。</p>
+<p>つまり、lambda_function.py と 各種ライブラリが同階層に入った「フォルダ本体」をzipにするのではなく、「これら全体」を選択して固めます。</p>
+<p>mac環境であれば、「アーカイブ.zip」というファイルができるでしょう。</p>
+<p>アップロードするのはこれです。</p>
+<p>親フォルダを固めたzipではありません。</p>
+<ol start="3">
+<li>
+<p>標準を使う
+調べていると同じような症状が出ている人が多く、特に lxml にこだわる理由もないのであれば、<code>html5lib</code> に切り替えるといいでしょう。</p>
+</li>
+<li>
+<p><code>/tmp/</code> に作成する
+lambdaでは書き込みできるのは <code>/tmp/</code> 配下に限定されるようです。
+なので、ファイル書き込みしたい、というのであればここに移すのがいいです。</p>
+</li>
+</ol>
+<p>自分の場合はこのようなアプローチを取りました。</p>
 <ul>
-<li>前提として、appのimageが巨大なので、不要なデータはキャッシュ含めて消す。作成に失敗した時も容量削減のために必ず消すこと。
+<li><code>/tmp</code> 配下に必要なフォルダを <code>os.mkdir</code> で作成</li>
+<li>write権限で必要なファイルを <code>/tmp</code> 配下でopen
 <ul>
-<li><code>docker system prune</code></li>
-<li><code>docker rmi xxxx yyyy zzz</code></li>
-<li><code>docker builder prune</code></li>
+<li>そのファイル名は日付をsuffixにつけることで、実行プロセスが対象を一意に特定できるようにする</li>
 </ul>
 </li>
+<li>最後に <code>/tmp</code> 配下を <code>rm</code> することでクリーンする</li>
 </ul>
-<ol>
-<li>volumeを消して、cacheなしでbuildする</li>
-</ol>
-<ul>
-<li><code>docker volume ls</code> =&gt; <code>docker volume rm xxx yyy</code></li>
-<li><code>docker-compose build --no-cache</code></li>
-</ul>
-<ol start="2">
-<li>Dockerfileで定義しているrubyのバージョンのスコープを限定する</li>
-</ol>
-<ul>
-<li><code>FROM ruby:2.6.4</code> =&gt;  <code>FROM amd64/ruby:2.6.4</code></li>
-</ul>
-<ol start="3">
-<li>platformを指定する</li>
-</ol>
-<ul>
-<li><code>platform=linux/x86_64</code></li>
-</ul>
-<ol start="4">
-<li>manifest.jsを作って下記を記述</li>
-<li>development.yamlを修正する</li>
-</ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">//= link_tree ../fonts &lt;-自分の環境n合わせること
-//= link_directory ../javascripts .js
-//= link_directory ../stylesheets .css
-</code></pre></div><hr>
-<p><code>構成</code></p>
-<ul>
-<li>docker-compose.yml</li>
-<li>docker-compose-override.yaml</li>
-<li>Dockerfile.development
-を利用</li>
-</ul>
-<p><code>詳細</code>
-docker-compose.yaml<br>
-基本的な定義のみを記述している。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">services:
-  databse:
-    restart: always
-    image: mysql:latest
-    command: --default-authentication-plugin=mysql_native_password
-    ....
-  redis:
-    image: redis:latest
-    volumes:
-      - ./tmp/redis:/data
-volumes:
-  mysql-datavolume:
-    driver: local
-  bundle:
-    driver: local
-</code></pre></div><p>docker-compose-override.yaml
-app定義を記述</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">app:
-  ports:
-    - 3000:3000
-  build:
-    context: .
-    dockerfile: Dockerfile.development
-  command: xxxx
-  ....
-database:
-    ports:
-      - xxxxx
-  redis:
-    ports:
-      - xxxx
-
-</code></pre></div><p>Dockerfile.development
-stepを定義</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">FROM node:14 as node
-FROM ruby:2.6.4
-...
-</code></pre></div><hr>
-<h2 id="それぞれの原因">それぞれの原因</h2>
-<h3 id="1-gem-の-could-not-find-xxx-問題">1. gem の <code>could not find xxx</code> 問題</h3>
-<p>cacheが残っていると Dockerfile.development の bundle install step を上手く実行してくれない。</p>
-<p>volumeを消して再度buildすれば問題ない。<br>
-ただし、imageが巨大な場合はtimeoutするかもなので、docker-compose up で一気にやるのは良くなくて、mysql や redis などの image 提供元があるものに関しては skip したいので、<code>docker-compose build --no-cache</code> で build のみした方がいい。</p>
-<p>railsもimageに詰めようと思ったが、さらに巨大になるのは(含めなくても15GB)嫌なので、アプリは外で動かすことにしている。</p>
-<h3 id="2-nokogiri-の-glibc--219-問題">2. nokogiri の <code>glibc &lt; 2.19</code> 問題</h3>
-<p>要求されているバージョンとホストOSが提供しているバージョンがずれていることが問題。
-取得するruby image のスコープを明示的に amd64/に絞ることでOK</p>
-<h3 id="3-mysql-の-image-pull-問題">3. mysql の image pull 問題</h3>
-<p>シンプルにarmが提供されてないから。<br>
-これだけの理由でmeriaDBにするのは意味ないので、platformを指定して凌ぐこと。</p>
-<h3 id="4-webpacker-の-could-not-find-applicationxxx-問題">4. webpacker の could not find application/xxx 問題</h3>
-<p>根幹の原因は調査できていない。<br>
-とりあえず作れば動くが本質ではないので、何か知っている方いましたら教えていただきたいです。</p>
-<h3 id="5">5.</h3>
-<p>issueが上がっていた。
-<a href="https://github.com/evilmartians/terraforming-rails/issues/34#issuecomment-872021786">https://github.com/evilmartians/terraforming-rails/issues/34#issuecomment-872021786</a></p>
-<p>下記に修正すれば良さそう
-<code>config.file_watcher = ActiveSupport::FileUpdateChecker</code></p>
 <hr>
-<h2 id="実行の手順">実行の手順</h2>
-<ol>
-<li>bundle exec rails s</li>
-<li>docker-compose up</li>
-<li>(別sessionで) bundle exec rails db:setup</li>
-</ol>
-<hr>
+<h2 id="まとめ">まとめ</h2>
+<p>lambdaをpythonで使ったことがなかったので、モジュールの展開などで混乱しました。<br>
+特に仮想環境を使っている人がほとんどだと思うので、lambda環境特有の仕様に合わせるために混乱しちゃうかもしれません。</p>
 
         
 
@@ -402,42 +336,42 @@ FROM ruby:2.6.4
     <ul class="share">
       
       <li>
-        <a href="//twitter.com/share?url=https%3a%2f%2fkohey.github.io%2fpost%2fdockerfile-setting-on-m1%2f&amp;text=m1%e3%83%9e%e3%82%b7%e3%83%b3%e3%81%abrails%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%82%92%e7%a7%bb%e7%ae%a1%e3%81%97%e3%81%9f%e6%99%82%e3%81%ab%e8%a9%b0%e3%81%be%e3%81%a3%e3%81%9f%e5%bf%98%e5%82%99%e9%8c%b2&amp;via=KKohey4" target="_blank" title="Share on Twitter">
+        <a href="//twitter.com/share?url=https%3a%2f%2fkohey.github.io%2fpost%2fpython%25E3%2581%25A7lambda%25E5%25AE%259F%25E8%25A1%258C%25E3%2581%2597%25E3%2581%259F%25E3%2582%2589%25E3%2583%258F%25E3%2583%259E%25E3%2581%25A3%25E3%2581%259F%2f&amp;text=Python%e3%81%a7lambda%e5%ae%9f%e8%a1%8c%e3%81%97%e3%81%9f%e3%82%89%e3%83%8f%e3%83%9e%e3%81%a3%e3%81%9f&amp;via=KKohey4" target="_blank" title="Share on Twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkohey.github.io%2fpost%2fdockerfile-setting-on-m1%2f" target="_blank" title="Share on Facebook">
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fkohey.github.io%2fpost%2fpython%25E3%2581%25A7lambda%25E5%25AE%259F%25E8%25A1%258C%25E3%2581%2597%25E3%2581%259F%25E3%2582%2589%25E3%2583%258F%25E3%2583%259E%25E3%2581%25A3%25E3%2581%259F%2f" target="_blank" title="Share on Facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//reddit.com/submit?url=https%3a%2f%2fkohey.github.io%2fpost%2fdockerfile-setting-on-m1%2f&amp;title=m1%e3%83%9e%e3%82%b7%e3%83%b3%e3%81%abrails%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%82%92%e7%a7%bb%e7%ae%a1%e3%81%97%e3%81%9f%e6%99%82%e3%81%ab%e8%a9%b0%e3%81%be%e3%81%a3%e3%81%9f%e5%bf%98%e5%82%99%e9%8c%b2" target="_blank" title="Share on Reddit">
+        <a href="//reddit.com/submit?url=https%3a%2f%2fkohey.github.io%2fpost%2fpython%25E3%2581%25A7lambda%25E5%25AE%259F%25E8%25A1%258C%25E3%2581%2597%25E3%2581%259F%25E3%2582%2589%25E3%2583%258F%25E3%2583%259E%25E3%2581%25A3%25E3%2581%259F%2f&amp;title=Python%e3%81%a7lambda%e5%ae%9f%e8%a1%8c%e3%81%97%e3%81%9f%e3%82%89%e3%83%8f%e3%83%9e%e3%81%a3%e3%81%9f" target="_blank" title="Share on Reddit">
           <i class="fab fa-reddit"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkohey.github.io%2fpost%2fdockerfile-setting-on-m1%2f&amp;title=m1%e3%83%9e%e3%82%b7%e3%83%b3%e3%81%abrails%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%82%92%e7%a7%bb%e7%ae%a1%e3%81%97%e3%81%9f%e6%99%82%e3%81%ab%e8%a9%b0%e3%81%be%e3%81%a3%e3%81%9f%e5%bf%98%e5%82%99%e9%8c%b2" target="_blank" title="Share on LinkedIn">
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fkohey.github.io%2fpost%2fpython%25E3%2581%25A7lambda%25E5%25AE%259F%25E8%25A1%258C%25E3%2581%2597%25E3%2581%259F%25E3%2582%2589%25E3%2583%258F%25E3%2583%259E%25E3%2581%25A3%25E3%2581%259F%2f&amp;title=Python%e3%81%a7lambda%e5%ae%9f%e8%a1%8c%e3%81%97%e3%81%9f%e3%82%89%e3%83%8f%e3%83%9e%e3%81%a3%e3%81%9f" target="_blank" title="Share on LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkohey.github.io%2fpost%2fdockerfile-setting-on-m1%2f&amp;title=m1%e3%83%9e%e3%82%b7%e3%83%b3%e3%81%abrails%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%82%92%e7%a7%bb%e7%ae%a1%e3%81%97%e3%81%9f%e6%99%82%e3%81%ab%e8%a9%b0%e3%81%be%e3%81%a3%e3%81%9f%e5%bf%98%e5%82%99%e9%8c%b2" target="_blank" title="Share on StumbleUpon">
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fkohey.github.io%2fpost%2fpython%25E3%2581%25A7lambda%25E5%25AE%259F%25E8%25A1%258C%25E3%2581%2597%25E3%2581%259F%25E3%2582%2589%25E3%2583%258F%25E3%2583%259E%25E3%2581%25A3%25E3%2581%259F%2f&amp;title=Python%e3%81%a7lambda%e5%ae%9f%e8%a1%8c%e3%81%97%e3%81%9f%e3%82%89%e3%83%8f%e3%83%9e%e3%81%a3%e3%81%9f" target="_blank" title="Share on StumbleUpon">
           <i class="fab fa-stumbleupon"></i>
         </a>
       </li>
   
       
       <li>
-        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkohey.github.io%2fpost%2fdockerfile-setting-on-m1%2f&amp;description=m1%e3%83%9e%e3%82%b7%e3%83%b3%e3%81%abrails%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%82%92%e7%a7%bb%e7%ae%a1%e3%81%97%e3%81%9f%e6%99%82%e3%81%ab%e8%a9%b0%e3%81%be%e3%81%a3%e3%81%9f%e5%bf%98%e5%82%99%e9%8c%b2" target="_blank" title="Share on Pinterest">
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fkohey.github.io%2fpost%2fpython%25E3%2581%25A7lambda%25E5%25AE%259F%25E8%25A1%258C%25E3%2581%2597%25E3%2581%259F%25E3%2582%2589%25E3%2583%258F%25E3%2583%259E%25E3%2581%25A3%25E3%2581%259F%2f&amp;description=Python%e3%81%a7lambda%e5%ae%9f%e8%a1%8c%e3%81%97%e3%81%9f%e3%82%89%e3%83%8f%e3%83%9e%e3%81%a3%e3%81%9f" target="_blank" title="Share on Pinterest">
           <i class="fab fa-pinterest"></i>
         </a>
       </li>
@@ -460,13 +394,9 @@ FROM ruby:2.6.4
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://kohey.github.io/post/javascript%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%82%AC%E3%82%A4%E3%83%89%E3%82%92%E8%AA%AD%E3%82%93%E3%81%A0/" data-toggle="tooltip" data-placement="top" title="JavaScriptスタイルガイドを読んだ">&larr; 前ページ</a>
+              <a href="https://kohey.github.io/post/dockerfile-setting-on-m1/" data-toggle="tooltip" data-placement="top" title="m1マシンにrailsプロジェクトを移管した時に詰まった忘備録">&larr; 前ページ</a>
             </li>
           
-          
-            <li class="next">
-              <a href="https://kohey.github.io/post/python%E3%81%A7lambda%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%9F%E3%82%89%E3%83%8F%E3%83%9E%E3%81%A3%E3%81%9F/" data-toggle="tooltip" data-placement="top" title="Pythonでlambda実行したらハマった">次ページ &rarr;</a>
-            </li>
           
         </ul>
       

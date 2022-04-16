@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://kohey.github.io/post/dockerfile-setting-on-m1/</loc>
-    <lastmod>2022-03-27T17:29:33+09:00</lastmod>
-  </url><url>
     <loc>https://kohey.github.io/post/</loc>
-    <lastmod>2022-03-27T17:29:33+09:00</lastmod>
+    <lastmod>2022-04-16T13:18:14+09:00</lastmod>
+  </url><url>
+    <loc>https://kohey.github.io/post/python%E3%81%A7lambda%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%9F%E3%82%89%E3%83%8F%E3%83%9E%E3%81%A3%E3%81%9F/</loc>
+    <lastmod>2022-04-16T13:18:14+09:00</lastmod>
   </url><url>
     <loc>https://kohey.github.io/</loc>
+    <lastmod>2022-04-16T13:18:14+09:00</lastmod>
+  </url><url>
+    <loc>https://kohey.github.io/post/dockerfile-setting-on-m1/</loc>
     <lastmod>2022-03-27T17:29:33+09:00</lastmod>
   </url><url>
     <loc>https://kohey.github.io/post/javascript%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB%E3%82%AC%E3%82%A4%E3%83%89%E3%82%92%E8%AA%AD%E3%82%93%E3%81%A0/</loc>
